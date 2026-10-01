@@ -2,7 +2,7 @@
   {
     "type": "painting",
     "id": "portrait-mary",
-    "position": [-3.7, 2.7, -7.84],
+    "position": [-3.7, 0.95, -7.84],
     "rotation": [0, 0, 0],
     "size": [1.65, 2.2],
     "image": "/portrait_1.jpg",
@@ -11,8 +11,8 @@
     "description": "Mary, during a journey through Georgia with Nastya.",
     "note": "The exact thoughts of the subject remain undocumented.",
     "framePreset": "simpleGold",
-    "labelPosition": [0, -1.72, 0.055],
-    "labelSize": [2.75, 0.8]
+    "labelPosition": [0, 0.2, 0.055],
+    "labelSize": [1.15, 0.4]
   },
   {
     "type": "painting",
@@ -58,7 +58,7 @@
   {
     "type": "painting",
     "id": "masha-georgia-2026",
-    "position": [6.83, 2.25, -3.2],
+    "position": [6.83, 0.55, -3.2],
     "rotation": [0, -1.5707963268, 0],
     "size": [1.2, 1.6],
     "image": "/images/masha-georgia-2026.jpg",
@@ -69,15 +69,15 @@
     "description": "From the Georgian period.",
     "note": "For a brief moment, Warsaw, work and all remaining obligations ceased to exist.",
     "descriptionItalic": true,
-    "labelPosition": [0, -1.42, 0.055],
-    "labelSize": [2.35, 0.7]
+    "labelPosition": [0, 0.5, 0.055],
+    "labelSize": [1.15, 0.4]
   },
   {
     "type": "roomSign",
     "id": "door-sign-room-one-side",
     "room": "ROOM II",
     "title": "PRIVATE COLLECTION",
-    "position": [6.863, 2.95, 4.5],
+    "position": [6.863, 3.3, 4.5],
     "rotation": [0, -1.5707963268, 0],
     "size": [2.15, 0.62]
   },
