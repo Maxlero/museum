@@ -1,6 +1,4 @@
-import { DOORWAY, ROOM, ROOM_TWO } from '../museum/config'
-
-type WallCollider = {
+export type WallCollider = {
   minX: number
   maxX: number
   minZ: number
@@ -15,53 +13,11 @@ type DoorCollider = {
   thickness: number
 }
 
-const halfThickness = ROOM.wallThickness / 2
-const minX = -ROOM.width / 2
-const sharedX = DOORWAY.wallX
-const maxX = ROOM_TWO.centerX + ROOM_TWO.width / 2
-const minZ = -ROOM.depth / 2
-const maxZ = ROOM.depth / 2
-const doorwayStart = DOORWAY.centerZ - DOORWAY.width / 2
-const doorwayEnd = DOORWAY.centerZ + DOORWAY.width / 2
+let wallColliders: WallCollider[] = []
 
-const WALL_COLLIDERS: WallCollider[] = [
-  {
-    minX: minX - halfThickness,
-    maxX: minX + halfThickness,
-    minZ: minZ - halfThickness,
-    maxZ: maxZ + halfThickness,
-  },
-  {
-    minX: maxX - halfThickness,
-    maxX: maxX + halfThickness,
-    minZ: minZ - halfThickness,
-    maxZ: maxZ + halfThickness,
-  },
-  {
-    minX: minX - halfThickness,
-    maxX: maxX + halfThickness,
-    minZ: minZ - halfThickness,
-    maxZ: minZ + halfThickness,
-  },
-  {
-    minX: minX - halfThickness,
-    maxX: maxX + halfThickness,
-    minZ: maxZ - halfThickness,
-    maxZ: maxZ + halfThickness,
-  },
-  {
-    minX: sharedX - halfThickness,
-    maxX: sharedX + halfThickness,
-    minZ,
-    maxZ: doorwayStart,
-  },
-  {
-    minX: sharedX - halfThickness,
-    maxX: sharedX + halfThickness,
-    minZ: doorwayEnd,
-    maxZ,
-  },
-]
+export function configureWallColliders(colliders: WallCollider[]) {
+  wallColliders = colliders
+}
 
 const doorColliders = new Map<string, DoorCollider>()
 
@@ -96,7 +52,7 @@ function squaredDistanceToSegment(
 }
 
 export function isWalkablePosition(x: number, z: number, playerRadius: number) {
-  for (const wall of WALL_COLLIDERS) {
+  for (const wall of wallColliders) {
     if (
       x > wall.minX - playerRadius &&
       x < wall.maxX + playerRadius &&

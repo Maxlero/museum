@@ -1,7 +1,10 @@
+import { useProgress } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 
 export function StartOverlay() {
   const [locked, setLocked] = useState(false)
+  const [ready, setReady] = useState(false)
+  const { active, progress } = useProgress()
 
   useEffect(() => {
     const onChange = () => setLocked(Boolean(document.pointerLockElement))
@@ -9,15 +12,24 @@ export function StartOverlay() {
     return () => document.removeEventListener('pointerlockchange', onChange)
   }, [])
 
-  const enter = () => document.querySelector('canvas')?.requestPointerLock()
+  useEffect(() => {
+    if (active || progress < 100) return
+    const timeout = window.setTimeout(() => setReady(true), 180)
+    return () => window.clearTimeout(timeout)
+  }, [active, progress])
+
+  const enter = () => {
+    if (!ready) return
+    document.querySelector('canvas')?.requestPointerLock()
+  }
 
   return (
-    <div className={`start-overlay ${locked ? 'hidden' : ''}`} onClick={enter}>
+    <div className={`start-overlay ${ready ? 'ready' : ''} ${locked ? 'hidden' : ''}`} onClick={enter}>
       <section className="intro">
         <p className="eyebrow">PRIVATE COLLECTION · EST. 2026</p>
         <h1>Музей Марии</h1>
         <p className="intro-copy">
-          Некоторые воспоминания лучше рассматривать вблизи.
+          Коллекция воспоминаний, артефактов и нескольких вещей, которым здесь, вероятно, не место.
         </p>
         <div className="ticket-details" aria-label="Данные билета">
           <span>ADMISSION: ONE</span>

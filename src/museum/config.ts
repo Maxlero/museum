@@ -9,10 +9,10 @@ export const ROOM = {
 } as const
 
 export const ROOM_TWO = {
-  centerX: 14,
-  width: 14,
-  depth: 16,
-  height: 5,
+  centerX: 12,
+  width: 10,
+  depth: 14,
+  height: 4.35,
 } as const
 
 export const DOORWAY = {
@@ -20,6 +20,14 @@ export const DOORWAY = {
   centerZ: 4.5,
   width: 1.6,
   height: 2.4,
+} as const
+
+export const PRIVATE_ROOM = {
+  centerX: 10,
+  centerZ: 11,
+  width: 6,
+  depth: 8,
+  height: 3.8,
 } as const
 
 export type PaintingConfig = {
@@ -47,6 +55,16 @@ export type PaintingConfig = {
   subtitle?: string
 }
 
+export type RoomConfig = {
+  type: 'room'
+  id: string
+  position: [number, number, number]
+  size: [number, number, number]
+  wallThickness?: number
+  style?: 'gallery' | 'privateCollection'
+  skylight?: boolean
+}
+
 export type RoomSignConfig = {
   type: 'roomSign'
   id: string | number
@@ -57,4 +75,45 @@ export type RoomSignConfig = {
   size: [number, number]
 }
 
-export type MuseumObjectConfig = PaintingConfig | RoomSignConfig
+export type DoorConfig = {
+  type: 'door'
+  id: string | number
+  position: [number, number, number]
+  rotation: [number, number, number]
+  width: number
+  height: number
+  openAngle?: number
+  openSpeed?: number
+  interactionDistance?: number
+  accessCode?: string
+  collectionTitle?: string
+  restrictedMessage?: string
+  grantedMessage?: string
+  panelSide?: -1 | 1
+}
+
+export type DoorAccessSignConfig = {
+  type: 'doorAccessSign'
+  id: string
+  doorId: string
+  position: [number, number, number]
+  rotation: [number, number, number]
+  size: [number, number, number]
+}
+
+export type KeypadConfig = {
+  type: 'keypad'
+  id: string
+  doorId: string
+  position: [number, number, number]
+  rotation: [number, number, number]
+  size: [number, number, number]
+}
+
+export type MuseumObjectConfig =
+  | RoomConfig
+  | PaintingConfig
+  | RoomSignConfig
+  | DoorConfig
+  | DoorAccessSignConfig
+  | KeypadConfig

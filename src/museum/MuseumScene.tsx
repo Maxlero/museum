@@ -3,7 +3,10 @@ import { PlayerController } from '../player/PlayerController'
 import { GalleryRoom } from './GalleryRoom'
 import { IntroCameraMotion } from './IntroCameraMotion'
 import { MuseumLighting } from './MuseumLighting'
+import { MuseumDoors } from './MuseumDoors'
+import { PrivateCollectionRoom } from './PrivateCollectionRoom'
 import { SecondRoom } from './SecondRoom'
+import { WorldColliders } from './WorldColliders'
 
 export function MuseumScene() {
   return (
@@ -21,6 +24,9 @@ export function MuseumScene() {
       <MuseumLighting />
       <GalleryRoom />
       <SecondRoom />
+      <PrivateCollectionRoom />
+      <MuseumDoors />
+      <WorldColliders />
       <IntroCameraMotion />
       <PlayerController />
       <Environment preset="apartment" environmentIntensity={0.12} />

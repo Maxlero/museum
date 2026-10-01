@@ -72,8 +72,16 @@ export function Painting({ config }: PaintingProps) {
     frame = 'classic',
     frameImage,
     frameSize = [4.05, 4.05],
+    labelPosition,
+    labelSize = [2.75, 0.8],
+    descriptionItalic,
   } = config
-  const hasDetailedLabel = Boolean(year || note)
+  const hasDetailedLabel = Boolean(year || description || note)
+  const resolvedLabelPosition: [number, number, number] = labelPosition ?? [
+    0,
+    -size[1] / 2 - (frame === 'ornate' ? 1.06 : 0.62),
+    0.055,
+  ]
 
   return (
     <group name={title} position={position} rotation={rotation}>
@@ -99,13 +107,15 @@ export function Painting({ config }: PaintingProps) {
         <ProceduralArtwork palette={palette} size={size} />
       )}
       {hasDetailedLabel ? (
-        <group position={[0, -size[1] / 2 - (frame === 'ornate' ? 1.06 : 0.62), 0.055]}>
+        <group position={resolvedLabelPosition}>
           <PaintingLabel
             title={title}
             year={year}
             description={description}
             note={note}
-            width={2.75}
+            descriptionItalic={descriptionItalic}
+            width={labelSize[0]}
+            height={labelSize[1]}
           />
         </group>
       ) : (

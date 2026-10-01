@@ -1,9 +1,5 @@
 import { useEffect, useMemo } from 'react'
 import { CanvasTexture, DoubleSide, SRGBColorSpace } from 'three'
-import { ROOM } from './config'
-
-const OPENING_WIDTH = 9.8
-const OPENING_DEPTH = 11.2
 
 type CeilingFrameProps = {
   width: number
@@ -75,18 +71,39 @@ function createSkyTexture() {
 
 type CeilingSkylightProps = {
   centerX?: number
+  centerZ?: number
+  baseY?: number
+  width?: number
+  depth?: number
+  height?: number
 }
 
-export function CeilingSkylight({ centerX = 0 }: CeilingSkylightProps) {
-  const { width, depth, height } = ROOM
-  const sideBorder = (width - OPENING_WIDTH) / 2
-  const endBorder = (depth - OPENING_DEPTH) / 2
+export function CeilingSkylight({
+  centerX = 0,
+  centerZ = 0,
+  baseY = 0,
+  width = 14,
+  depth = 16,
+  height = 5,
+}: CeilingSkylightProps) {
+  const openingWidth = width * 0.7
+  const openingDepth = depth * 0.7
+  const sideBorder = (width - openingWidth) / 2
+  const endBorder = (depth - openingDepth) / 2
   const skyTexture = useMemo(createSkyTexture, [])
+  const verticalBars = useMemo(
+    () => Array.from({ length: 5 }, (_, index) => -openingWidth / 3 + index * (openingWidth / 6)),
+    [openingWidth],
+  )
+  const horizontalBars = useMemo(
+    () => Array.from({ length: 5 }, (_, index) => -openingDepth / 3 + index * (openingDepth / 6)),
+    [openingDepth],
+  )
 
   useEffect(() => () => skyTexture.dispose(), [skyTexture])
 
   return (
-    <group position={[centerX, 0, 0]}>
+    <group position={[centerX, baseY, centerZ]}>
       {/* Потолочные панели оставляют в центре большую прямоугольную нишу. */}
       <mesh receiveShadow position={[0, height, -(depth - endBorder) / 2]}>
         <boxGeometry args={[width, 0.18, endBorder]} />
@@ -97,28 +114,28 @@ export function CeilingSkylight({ centerX = 0 }: CeilingSkylightProps) {
         <meshStandardMaterial color="#d7d2c9" roughness={0.92} />
       </mesh>
       <mesh receiveShadow position={[-(width - sideBorder) / 2, height, 0]}>
-        <boxGeometry args={[sideBorder, 0.18, OPENING_DEPTH]} />
+        <boxGeometry args={[sideBorder, 0.18, openingDepth]} />
         <meshStandardMaterial color="#d7d2c9" roughness={0.92} />
       </mesh>
       <mesh receiveShadow position={[(width - sideBorder) / 2, height, 0]}>
-        <boxGeometry args={[sideBorder, 0.18, OPENING_DEPTH]} />
+        <boxGeometry args={[sideBorder, 0.18, openingDepth]} />
         <meshStandardMaterial color="#d7d2c9" roughness={0.92} />
       </mesh>
 
       {/* Три спокойных ступени вместо сложной лепнины. */}
       <CeilingFrame width={width - 0.32} depth={depth - 0.32} thickness={0.22} height={height - 0.13} color="#c9c2b6" />
       <CeilingFrame width={width - 0.68} depth={depth - 0.68} thickness={0.18} height={height - 0.22} color="#ded8ce" />
-      <CeilingFrame width={OPENING_WIDTH + 0.5} depth={OPENING_DEPTH + 0.5} thickness={0.24} height={height - 0.31} color="#bdb5a8" />
+      <CeilingFrame width={openingWidth + 0.5} depth={openingDepth + 0.5} thickness={0.24} height={height - 0.31} color="#bdb5a8" />
 
       {/* Светлое небо закрывает чёрный фон над нишей. */}
       <mesh position={[0, height + 0.16, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[OPENING_WIDTH, OPENING_DEPTH]} />
+        <planeGeometry args={[openingWidth, openingDepth]} />
         <meshBasicMaterial map={skyTexture} toneMapped={false} side={DoubleSide} />
       </mesh>
 
       {/* Матовый стеклянный плафон. */}
       <mesh position={[0, height - 0.18, 0]} rotation={[Math.PI / 2, 0, 0]}>
-        <planeGeometry args={[OPENING_WIDTH, OPENING_DEPTH]} />
+        <planeGeometry args={[openingWidth, openingDepth]} />
         <meshPhysicalMaterial
           color="#f4ead1"
           emissive="#d9c9a4"
@@ -134,17 +151,17 @@ export function CeilingSkylight({ centerX = 0 }: CeilingSkylightProps) {
       </mesh>
 
       {/* Наружная металлическая рама и сетка поверх стекла. */}
-      <CeilingFrame width={OPENING_WIDTH} depth={OPENING_DEPTH} thickness={0.11} height={height - 0.22} color="#403a32" />
+      <CeilingFrame width={openingWidth} depth={openingDepth} thickness={0.11} height={height - 0.22} color="#403a32" />
       <group position={[0, height - 0.23, 0]}>
-        {[-3.25, -1.62, 0, 1.62, 3.25].map((x) => (
+        {verticalBars.map((x) => (
           <mesh key={`vertical-${x}`} position={[x, 0, 0]} castShadow>
-            <boxGeometry args={[0.055, 0.075, OPENING_DEPTH]} />
+            <boxGeometry args={[0.055, 0.075, openingDepth]} />
             <meshStandardMaterial color="#39352f" roughness={0.38} metalness={0.72} />
           </mesh>
         ))}
-        {[-3.72, -1.86, 0, 1.86, 3.72].map((z) => (
+        {horizontalBars.map((z) => (
           <mesh key={`horizontal-${z}`} position={[0, -0.002, z]} castShadow>
-            <boxGeometry args={[OPENING_WIDTH, 0.075, 0.055]} />
+            <boxGeometry args={[openingWidth, 0.075, 0.055]} />
             <meshStandardMaterial color="#39352f" roughness={0.38} metalness={0.72} />
           </mesh>
         ))}

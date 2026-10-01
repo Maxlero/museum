@@ -1,20 +1,20 @@
 import { useTexture } from '@react-three/drei'
 import { useEffect, useMemo } from 'react'
-import { FileLoader, RepeatWrapping, SRGBColorSpace, Texture } from 'three'
-import { useLoader } from '@react-three/fiber'
+import { RepeatWrapping, SRGBColorSpace, Texture } from 'three'
 import { MuseumPainting } from '../components/MuseumPainting'
-import { Door } from '../components/Door'
 import { RoomSign } from '../components/RoomSign'
 import { CeilingSkylight } from './CeilingSkylight'
 import {
   DOORWAY,
   ROOM,
-  type MuseumObjectConfig,
+  type DoorConfig,
   type PaintingConfig,
+  type RoomConfig,
   type RoomSignConfig,
 } from './config'
 import { Painting } from './Painting'
 import { PaintingLabel } from './PaintingLabel'
+import { useMuseumObjects } from './useMuseumObjects'
 
 function tiledTexture(source: Texture, repeatX: number, repeatY: number) {
   const texture = source.clone()
@@ -63,16 +63,25 @@ function ConfiguredMuseumPainting({ painting }: { painting: PaintingConfig }) {
 }
 
 export function GalleryRoom() {
-  const { width, depth, height, wallThickness } = ROOM
-  const doorwayStart = DOORWAY.centerZ - DOORWAY.width / 2
-  const doorwayEnd = DOORWAY.centerZ + DOORWAY.width / 2
-  const wallBeforeDoor = doorwayStart + depth / 2
-  const wallAfterDoor = depth / 2 - doorwayEnd
-  const objectsSource = useLoader(FileLoader, '/objects.json') as unknown as string
-  const objects = useMemo(
-    () => JSON.parse(objectsSource) as MuseumObjectConfig[],
-    [objectsSource],
+  const objects = useMuseumObjects()
+  const room = objects.find(
+    (object): object is RoomConfig => object.type === 'room' && object.id === 'room-one',
   )
+  const [centerX, baseY, centerZ] = room?.position ?? [0, 0, 0]
+  const [width, height, depth] = room?.size ?? [ROOM.width, ROOM.height, ROOM.depth]
+  const wallThickness = room?.wallThickness ?? ROOM.wallThickness
+  const connectingDoor = objects.find(
+    (object): object is DoorConfig => object.type === 'door' && object.id === 'room-one-to-room-two',
+  )
+  const doorwayStart = connectingDoor?.position[2] ?? centerZ + DOORWAY.centerZ - DOORWAY.width / 2
+  const doorwayWidth = connectingDoor?.width ?? DOORWAY.width
+  const doorwayHeight = connectingDoor?.height ?? DOORWAY.height
+  const doorwayEnd = doorwayStart + doorwayWidth
+  const doorwayCenter = doorwayStart + doorwayWidth / 2
+  const roomMinZ = centerZ - depth / 2
+  const roomMaxZ = centerZ + depth / 2
+  const wallBeforeDoor = doorwayStart - roomMinZ
+  const wallAfterDoor = roomMaxZ - doorwayEnd
   const paintings = objects.filter(
     (object): object is PaintingConfig => object.type === 'painting',
   )
@@ -104,49 +113,44 @@ export function GalleryRoom() {
 
   return (
     <group>
-      <mesh receiveShadow position={[0, -0.1, 0]}>
+      <mesh receiveShadow position={[centerX, baseY - 0.1, centerZ]}>
         <boxGeometry args={[width, 0.2, depth]} />
         <meshStandardMaterial map={floorTexture} color="#d8bd94" roughness={0.76} />
       </mesh>
-      <CeilingSkylight />
-      <mesh receiveShadow position={[0, height / 2, -depth / 2]}>
+      {room?.skylight !== false && (
+        <CeilingSkylight centerX={centerX} centerZ={centerZ} baseY={baseY} width={width} depth={depth} height={height} />
+      )}
+      <mesh receiveShadow position={[centerX, baseY + height / 2, roomMinZ]}>
         <boxGeometry args={[width, height, wallThickness]} />
         <meshStandardMaterial map={longWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
-      <mesh receiveShadow position={[0, height / 2, depth / 2]}>
+      <mesh receiveShadow position={[centerX, baseY + height / 2, roomMaxZ]}>
         <boxGeometry args={[width, height, wallThickness]} />
         <meshStandardMaterial map={longWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
-      <mesh receiveShadow position={[-width / 2, height / 2, 0]}>
+      <mesh receiveShadow position={[centerX - width / 2, baseY + height / 2, centerZ]}>
         <boxGeometry args={[wallThickness, height, depth]} />
         <meshStandardMaterial map={sideWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
-      <mesh receiveShadow position={[width / 2, height / 2, -depth / 2 + wallBeforeDoor / 2]}>
+      <mesh receiveShadow position={[centerX + width / 2, baseY + height / 2, roomMinZ + wallBeforeDoor / 2]}>
         <boxGeometry args={[wallThickness, height, wallBeforeDoor]} />
         <meshStandardMaterial map={sideWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
-      <mesh receiveShadow position={[width / 2, height / 2, doorwayEnd + wallAfterDoor / 2]}>
+      <mesh receiveShadow position={[centerX + width / 2, baseY + height / 2, doorwayEnd + wallAfterDoor / 2]}>
         <boxGeometry args={[wallThickness, height, wallAfterDoor]} />
         <meshStandardMaterial map={sideWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
       <mesh
         receiveShadow
         position={[
-          width / 2,
-          DOORWAY.height + (height - DOORWAY.height) / 2,
-          DOORWAY.centerZ,
+          centerX + width / 2,
+          baseY + doorwayHeight + (height - doorwayHeight) / 2,
+          doorwayCenter,
         ]}
       >
-        <boxGeometry args={[wallThickness, height - DOORWAY.height, DOORWAY.width]} />
+        <boxGeometry args={[wallThickness, height - doorwayHeight, doorwayWidth]} />
         <meshStandardMaterial map={sideWallTexture} color="#d1cbc1" roughness={0.94} />
       </mesh>
-
-      <Door
-        id="room-one-to-room-two"
-        position={[width / 2 - 0.16, 0, doorwayStart]}
-        width={DOORWAY.width}
-        height={DOORWAY.height}
-      />
       {roomSigns.map((sign) => (
         <RoomSign
           key={sign.id}
