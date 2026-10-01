@@ -1,0 +1,93 @@
+[
+  {
+    "type": "painting",
+    "id": "portrait-mary",
+    "position": [-3.7, 2.7, -7.84],
+    "rotation": [0, 0, 0],
+    "size": [1.65, 2.2],
+    "image": "/portrait_1.jpg",
+    "title": "UNTITLED (GEORGIA)",
+    "year": "2026",
+    "description": "Mary, during a journey through Georgia with Nastya.",
+    "note": "The exact thoughts of the subject remain undocumented.",
+    "framePreset": "simpleGold",
+    "labelPosition": [0, -1.72, 0.055],
+    "labelSize": [2.75, 0.8]
+  },
+  {
+    "type": "painting",
+    "id": "living-memory",
+    "position": [0, 2.3, -7.83],
+    "rotation": [0, 0, 0],
+    "size": [2.65, 1.72],
+    "title": "Живое воспоминание",
+    "description": "Картина оживает, когда посетитель подходит ближе.",
+    "palette": ["#152a33", "#c88a64", "#f4d99e"],
+    "living": true
+  },
+  {
+    "type": "painting",
+    "id": "summer",
+    "position": [3.7, 2.25, -7.84],
+    "rotation": [0, 0, 0],
+    "size": [2.3, 1.55],
+    "title": "Долгое лето",
+    "description": "Этюд в тёплых тонах.",
+    "palette": ["#263822", "#aebd6c", "#efd09d"]
+  },
+  {
+    "type": "painting",
+    "id": "blue-hour",
+    "position": [-6.83, 2.25, -2.4],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [2.3, 1.55],
+    "title": "Синий час",
+    "description": "Вечерний зал.",
+    "palette": ["#172440", "#547f9d", "#d5c6a5"]
+  },
+  {
+    "type": "painting",
+    "id": "garden",
+    "position": [6.83, 2.25, 0.6],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [2.3, 1.55],
+    "title": "Тихий сад",
+    "description": "Зелёная комната воспоминаний.",
+    "palette": ["#172f2a", "#688d6b", "#e0bd86"]
+  },
+  {
+    "type": "painting",
+    "id": "masha-georgia-2026",
+    "position": [6.83, 2.25, -3.2],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.2, 1.6],
+    "image": "/images/masha-georgia-2026.jpg",
+    "framePreset": "simpleGold",
+    "title": "THE GRAND ESCAPE",
+    "subtitle": "Georgia, 2026",
+    "year": "Georgia, 2026",
+    "description": "From the Georgian period.",
+    "note": "For a brief moment, Warsaw, work and all remaining obligations ceased to exist.",
+    "descriptionItalic": true,
+    "labelPosition": [0, -1.42, 0.055],
+    "labelSize": [2.35, 0.7]
+  },
+  {
+    "type": "roomSign",
+    "id": "door-sign-room-one-side",
+    "room": "ROOM II",
+    "title": "PRIVATE COLLECTION",
+    "position": [6.863, 2.95, 4.5],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [2.15, 0.62]
+  },
+  {
+    "type": "roomSign",
+    "id": "door-sign-room-two-side",
+    "room": "ROOM I",
+    "title": "THE SUBJECT",
+    "position": [7.137, 2.95, 4.5],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [2.15, 0.62]
+  }
+]
