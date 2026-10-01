@@ -1,11 +1,13 @@
 import { Environment } from '@react-three/drei'
 import { PlayerController } from '../player/PlayerController'
+import { DecommissionedWing } from './DecommissionedWing'
 import { GalleryRoom } from './GalleryRoom'
 import { IntroCameraMotion } from './IntroCameraMotion'
 import { MuseumLighting } from './MuseumLighting'
 import { MuseumDoors } from './MuseumDoors'
 import { PrivateCollectionRoom } from './PrivateCollectionRoom'
 import { SecondRoom } from './SecondRoom'
+import { StaffArchiveRoom } from './StaffArchiveRoom'
 import { WorldColliders } from './WorldColliders'
 
 export function MuseumScene() {
@@ -25,6 +27,8 @@ export function MuseumScene() {
       <GalleryRoom />
       <SecondRoom />
       <PrivateCollectionRoom />
+      <DecommissionedWing />
+      <StaffArchiveRoom />
       <MuseumDoors />
       <WorldColliders />
       <IntroCameraMotion />

@@ -27,6 +27,24 @@
     "skylight": false
   },
   {
+    "type": "room",
+    "id": "decommissioned-wing",
+    "position": [12, 0, -14],
+    "size": [8, 4.35, 14],
+    "wallThickness": 0.25,
+    "style": "decommissioned",
+    "skylight": true
+  },
+  {
+    "type": "room",
+    "id": "staff-archive",
+    "position": [21, 0, -10.5],
+    "size": [10, 4, 4.5],
+    "wallThickness": 0.25,
+    "style": "archive",
+    "skylight": false
+  },
+  {
     "type": "painting",
     "id": "portrait-mary",
     "position": [-3.7, 0.95, -7.84],
@@ -214,6 +232,150 @@
     "palette": ["#20130f", "#6d4530", "#d0a066"]
   },
   {
+    "type": "painting",
+    "id": "room-4-left-01",
+    "position": [8.14, 2.15, -9.5],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [1.05, 1.4],
+    "image": "/rooms/room-4/111.jpg",
+    "title": "ARCHIVE ENTRY 001",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.84, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-left-02",
+    "position": [8.14, 2.15, -12.5],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [1.14, 1.4],
+    "image": "/rooms/room-4/222.jpg",
+    "title": "ARCHIVE ENTRY 002",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.9, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-left-03",
+    "position": [8.14, 2.15, -15.5],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [0.7, 1.4],
+    "image": "/rooms/room-4/333.jpg",
+    "title": "ARCHIVE ENTRY 003",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.54, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-right-01",
+    "position": [8.14, 2.15, -18.5],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [0.83, 1.4],
+    "image": "/rooms/room-4/555.jpg",
+    "title": "ARCHIVE ENTRY 004",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.65, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-right-02",
+    "position": [15.86, 2.15, -14],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [0.81, 1.4],
+    "image": "/rooms/room-4/666.jpg",
+    "title": "ARCHIVE ENTRY 005",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.63, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-right-03",
+    "position": [15.86, 2.15, -18.5],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.15, 1.4],
+    "image": "/rooms/room-4/888.jpg",
+    "title": "ARCHIVE ENTRY 006",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [0.9, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-back-01",
+    "position": [9.5, 2.15, -20.84],
+    "rotation": [0, 0, 0],
+    "size": [1.6, 1.2],
+    "image": "/rooms/room-4/444.jpg",
+    "title": "ARCHIVE ENTRY 007",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.03, 0.075],
+    "labelSize": [1.25, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-back-02",
+    "position": [12, 2.15, -20.84],
+    "rotation": [0, 0, 0],
+    "size": [1.45, 1.2],
+    "image": "/rooms/room-4/777.jpg",
+    "title": "ARCHIVE ENTRY 008",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.03, 0.075],
+    "labelSize": [1.12, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-back-03",
+    "position": [14.5, 2.15, -20.84],
+    "rotation": [0, 0, 0],
+    "size": [1.26, 1.4],
+    "image": "/rooms/room-4/999.jpg",
+    "title": "ARCHIVE ENTRY 009",
+    "year": "Documentation pending.",
+    "labelPosition": [0, -1.13, 0.075],
+    "labelSize": [1, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-placeholder-01",
+    "position": [12, 2.15, -7.16],
+    "rotation": [0, 3.1415926536, 0],
+    "size": [1, 1.35],
+    "placeholderText": "?",
+    "title": "ARCHIVE ENTRY 010",
+    "year": "Record unavailable.",
+    "labelPosition": [0, -1.1, 0.075],
+    "labelSize": [0.78, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-placeholder-02",
+    "position": [15.86, 2.15, -16.25],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1, 1.35],
+    "placeholderText": "?",
+    "title": "ARCHIVE ENTRY 011",
+    "year": "Record unavailable.",
+    "labelPosition": [0, -1.1, 0.075],
+    "labelSize": [0.78, 0.32]
+  },
+  {
+    "type": "painting",
+    "id": "room-4-placeholder-03",
+    "position": [14.5, 2.15, -7.16],
+    "rotation": [0, 3.1415926536, 0],
+    "size": [1, 1.35],
+    "placeholderText": "?",
+    "title": "ARCHIVE ENTRY 012",
+    "year": "Record unavailable.",
+    "labelPosition": [0, -1.1, 0.075],
+    "labelSize": [0.78, 0.32]
+  },
+  {
     "type": "roomSign",
     "id": "door-sign-room-one-side",
     "room": "ROOM II",
@@ -221,6 +383,30 @@
     "position": [6.863, 3.3, 4.5],
     "rotation": [0, -1.5707963268, 0],
     "size": [2.15, 0.62]
+  },
+  {
+    "type": "roomSign",
+    "id": "decommissioned-wing-sign",
+    "room": "",
+    "title": "THE DECOMMISSIONED WING",
+    "position": [10, 2.98, -6.86],
+    "rotation": [0, 0, 0],
+    "size": [2.8, 0.88],
+    "lines": [
+      {
+        "text": "A collection of individuals formerly associated with the subject.",
+        "italic": true
+      },
+      {
+        "text": "Some relationships ended naturally."
+      },
+      {
+        "text": "Some suffered structural failure."
+      },
+      {
+        "text": "Some remain under review."
+      }
+    ]
   },
   {
     "type": "roomSign",
@@ -232,6 +418,21 @@
     "size": [2.15, 0.62]
   },
   {
+    "type": "roomSign",
+    "id": "staff-archive-sign",
+    "room": "STAFF ONLY",
+    "title": "ARCHIVE",
+    "position": [15.86, 3.02, -10.5],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.9, 0.68],
+    "lines": [
+      {
+        "text": "Authorized personnel only.",
+        "italic": true
+      }
+    ]
+  },
+  {
     "type": "door",
     "id": "room-one-to-room-two",
     "position": [6.84, 0, 3.7],
@@ -240,7 +441,8 @@
     "height": 2.4,
     "openAngle": -1.5707963268,
     "openSpeed": 6,
-    "interactionDistance": 2.5
+    "interactionDistance": 2.5,
+    "autoCloseSeconds": 25
   },
   {
     "type": "door",
@@ -253,10 +455,37 @@
     "openSpeed": 1.65,
     "interactionDistance": 2.4,
     "accessCode": "228",
-    "collectionTitle": "PRIVATE COLLECTION",
+    "collectionTitle": "RED ROOM",
     "restrictedMessage": "Access restricted.",
     "grantedMessage": "Access granted.\nCurator assumes no responsibility for what follows.",
-    "panelSide": 1
+    "panelSide": 1,
+    "autoCloseSeconds": 25
+  },
+  {
+    "type": "door",
+    "id": "room-two-to-decommissioned-wing",
+    "position": [9.25, 0, -6.84],
+    "rotation": [0, 1.5707963268, 0],
+    "width": 1.5,
+    "height": 2.25,
+    "openAngle": 1.5707963268,
+    "openSpeed": 4,
+    "interactionDistance": 2.4,
+    "panelSide": -1,
+    "autoCloseSeconds": 25
+  },
+  {
+    "type": "door",
+    "id": "decommissioned-to-staff-archive",
+    "position": [15.84, 0, -11.25],
+    "rotation": [0, 0, 0],
+    "width": 1.5,
+    "height": 2.25,
+    "openAngle": 1.5707963268,
+    "openSpeed": 4,
+    "interactionDistance": 2.4,
+    "panelSide": -1,
+    "autoCloseSeconds": 25
   },
   {
     "type": "doorAccessSign",

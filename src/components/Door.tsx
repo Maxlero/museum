@@ -23,6 +23,7 @@ type DoorProps = {
   panelSide?: -1 | 1
   accessSign?: DoorAccessSignConfig
   keypad?: KeypadConfig
+  autoCloseSeconds?: number
 }
 
 export function Door({
@@ -42,6 +43,7 @@ export function Door({
   panelSide = -1,
   accessSign,
   keypad,
+  autoCloseSeconds,
 }: DoorProps) {
   const { camera } = useThree()
   const hinge = useRef<Group>(null)
@@ -106,6 +108,12 @@ export function Door({
   }, [accessCode, enteredCode, keypadActive, unlocked])
 
   useEffect(() => () => removeDoorCollider(id), [id])
+
+  useEffect(() => {
+    if (!open || !autoCloseSeconds) return
+    const timeout = window.setTimeout(() => setOpen(false), autoCloseSeconds * 1000)
+    return () => window.clearTimeout(timeout)
+  }, [autoCloseSeconds, open])
 
   useFrame((_, delta) => {
     const targetAngle = open ? openAngle : 0

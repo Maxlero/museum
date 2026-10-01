@@ -160,6 +160,7 @@ export function GalleryRoom() {
           rotation={sign.rotation}
           width={sign.size[0]}
           height={sign.size[1]}
+          lines={sign.lines}
         />
       ))}
 

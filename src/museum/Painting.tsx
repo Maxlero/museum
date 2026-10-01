@@ -1,6 +1,6 @@
 import { useTexture } from '@react-three/drei'
 import { useEffect, useMemo } from 'react'
-import { SRGBColorSpace } from 'three'
+import { CanvasTexture, SRGBColorSpace } from 'three'
 import type { PaintingConfig } from './config'
 import { LivingPainting } from './LivingPainting'
 import { PaintingLabel } from './PaintingLabel'
@@ -40,6 +40,40 @@ function ProceduralArtwork({
   )
 }
 
+function PlaceholderArtwork({ text, size }: { text: string; size: [number, number] }) {
+  const texture = useMemo(() => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 640
+    canvas.height = 800
+    const context = canvas.getContext('2d')!
+    const gradient = context.createLinearGradient(0, 0, 0, canvas.height)
+    gradient.addColorStop(0, '#252424')
+    gradient.addColorStop(1, '#111010')
+    context.fillStyle = gradient
+    context.fillRect(0, 0, canvas.width, canvas.height)
+    context.strokeStyle = 'rgba(205, 174, 112, .35)'
+    context.lineWidth = 5
+    context.strokeRect(28, 28, canvas.width - 56, canvas.height - 56)
+    context.fillStyle = '#c5a66d'
+    context.textAlign = 'center'
+    context.textBaseline = 'middle'
+    context.font = '280px Georgia, serif'
+    context.fillText(text, canvas.width / 2, canvas.height / 2 - 10)
+    const result = new CanvasTexture(canvas)
+    result.colorSpace = SRGBColorSpace
+    return result
+  }, [text])
+
+  useEffect(() => () => texture.dispose(), [texture])
+
+  return (
+    <mesh position={[0, 0, 0.052]}>
+      <planeGeometry args={size} />
+      <meshStandardMaterial map={texture} roughness={0.82} />
+    </mesh>
+  )
+}
+
 function OrnateFrame({ image, size }: { image: string; size: [number, number] }) {
   const texture = useTexture(image)
   texture.colorSpace = SRGBColorSpace
@@ -75,6 +109,7 @@ export function Painting({ config }: PaintingProps) {
     labelPosition,
     labelSize = [2.75, 0.8],
     descriptionItalic,
+    placeholderText,
   } = config
   const hasDetailedLabel = Boolean(year || description || note)
   const resolvedLabelPosition: [number, number, number] = labelPosition ?? [
@@ -103,6 +138,8 @@ export function Painting({ config }: PaintingProps) {
         <LivingPainting size={size} palette={palette} />
       ) : image ? (
         <ImageArtwork image={image} size={size} />
+      ) : placeholderText ? (
+        <PlaceholderArtwork text={placeholderText} size={size} />
       ) : (
         <ProceduralArtwork palette={palette} size={size} />
       )}

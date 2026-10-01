@@ -30,6 +30,22 @@ export const PRIVATE_ROOM = {
   height: 3.8,
 } as const
 
+export const DECOMMISSIONED_ROOM = {
+  centerX: 12,
+  centerZ: -14,
+  width: 8,
+  depth: 14,
+  height: 4.35,
+} as const
+
+export const STAFF_ARCHIVE_ROOM = {
+  centerX: 21,
+  centerZ: -10.5,
+  width: 10,
+  depth: 4.5,
+  height: 4,
+} as const
+
 export type PaintingConfig = {
   type: 'painting'
   id: string | number
@@ -53,6 +69,7 @@ export type PaintingConfig = {
   frameSize?: [number, number]
   framePreset?: FramePreset
   subtitle?: string
+  placeholderText?: string
 }
 
 export type RoomConfig = {
@@ -61,7 +78,7 @@ export type RoomConfig = {
   position: [number, number, number]
   size: [number, number, number]
   wallThickness?: number
-  style?: 'gallery' | 'privateCollection'
+  style?: 'gallery' | 'privateCollection' | 'decommissioned' | 'archive'
   skylight?: boolean
 }
 
@@ -73,6 +90,10 @@ export type RoomSignConfig = {
   position: [number, number, number]
   rotation: [number, number, number]
   size: [number, number]
+  lines?: Array<{
+    text: string
+    italic?: boolean
+  }>
 }
 
 export type DoorConfig = {
@@ -90,6 +111,7 @@ export type DoorConfig = {
   restrictedMessage?: string
   grantedMessage?: string
   panelSide?: -1 | 1
+  autoCloseSeconds?: number
 }
 
 export type DoorAccessSignConfig = {
