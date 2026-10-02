@@ -47,11 +47,11 @@ export const STAFF_ARCHIVE_ROOM = {
 } as const
 
 export const ACTIVE_COLLECTION_ROOM = {
-  centerX: 21,
+  centerX: 24.1,
   centerZ: -0.75,
-  width: 8,
-  depth: 5,
-  height: 4.2,
+  width: 14,
+  depth: 7,
+  height: 4.35,
 } as const
 
 export type PaintingConfig = {
@@ -64,6 +64,11 @@ export type PaintingConfig = {
   descriptionItalic?: boolean
   labelPosition?: [number, number, number]
   labelSize?: [number, number]
+  labelLines?: Array<{
+    text: string
+    italic?: boolean
+    bold?: boolean
+  }>
   position: [number, number, number]
   rotation: [number, number, number]
   size: [number, number]

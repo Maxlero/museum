@@ -187,8 +187,6 @@ export function WorldColliders() {
       horizontalWall(archiveMaxZ, archiveMinX, archiveMaxX, archiveThickness),
       verticalWall(archiveMaxX, archiveMinZ, archiveMaxZ, archiveThickness),
 
-      verticalWall(activeMinX, activeMinZ, activeStart, activeThickness),
-      verticalWall(activeMinX, activeEnd, activeMaxZ, activeThickness),
       verticalWall(activeMaxX, activeMinZ, activeMaxZ, activeThickness),
       horizontalWall(activeMinZ, activeMinX, activeMaxX, activeThickness),
       horizontalWall(activeMaxZ, activeMinX, activeMaxX, activeThickness),

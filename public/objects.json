@@ -29,11 +29,11 @@
   {
     "type": "room",
     "id": "active-collection-room",
-    "position": [21, 0, -0.75],
-    "size": [8, 4.2, 5],
+    "position": [24.1, 0, -0.75],
+    "size": [14, 4.35, 7],
     "wallThickness": 0.25,
     "style": "activeCollection",
-    "skylight": false
+    "skylight": true
   },
   {
     "type": "room",
@@ -302,10 +302,25 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-4/111.jpg",
-    "title": "ARCHIVE ENTRY 001",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "title": "UNTITLED (RED FLAGS IN CASUAL WEAR)",
+    "year": "Office period",
+    "labelLines": [
+      {
+        "text": "Married. Father. Colleague. Romantic ambitions."
+      },
+      {
+        "text": "Seen here wearing a torn T-shirt to work."
+      },
+      {
+        "text": "Historians now consider this detail less surprising than it once appeared."
+      },
+      {
+        "text": "STATUS: PERMANENTLY DECOMMISSIONED",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.33, 0.075],
+    "labelSize": [0.92, 0.72]
   },
   {
     "type": "painting",
@@ -314,10 +329,22 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [1.14, 1.4],
     "image": "/rooms/room-4/222.jpg",
-    "title": "ARCHIVE ENTRY 002",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.9, 0.32]
+    "title": "EVERYTHING IS TERRIBLE",
+    "year": "Private Collection",
+    "labelLines": [
+      {
+        "text": "No stable relationship has yet been established between observable living standards and reported levels of catastrophe."
+      },
+      {
+        "text": "Once a frequent presence in the subject’s life, the sitter now appears less regularly, though not yet rarely enough to qualify for archival storage."
+      },
+      {
+        "text": "STATUS: UNDER REVIEW",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.33, 0.075],
+    "labelSize": [1.02, 0.72]
   },
   {
     "type": "painting",
@@ -326,10 +353,21 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [0.7, 1.4],
     "image": "/rooms/room-4/333.jpg",
-    "title": "ARCHIVE ENTRY 003",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.54, 0.32]
+    "title": "THE SUPPORTING COLUMN",
+    "labelLines": [
+      {
+        "text": "A rarely celebrated but structurally indispensable figure."
+      },
+      {
+        "text": "Responsible for maintaining the household’s financial, logistical and possibly emotional load-bearing capacity."
+      },
+      {
+        "text": "STATUS: DO NOT REMOVE",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.36, 0.075],
+    "labelSize": [0.64, 0.76]
   },
   {
     "type": "painting",
@@ -338,10 +376,28 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [0.83, 1.4],
     "image": "/rooms/room-4/555.jpg",
-    "title": "ARCHIVE ENTRY 004",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.65, 0.32]
+    "title": "THE RECURRING DUO",
+    "year": "Wedding-era connection, periodically restored",
+    "labelLines": [
+      {
+        "text": "A pair closely associated with several important chapters of the subject’s life."
+      },
+      {
+        "text": "The relationship has followed a distinctive historical pattern: closeness, rupture, prolonged silence, reconciliation — and repeat."
+      },
+      {
+        "text": "They attended the subject’s wedding. The subject later attended theirs."
+      },
+      {
+        "text": "Current scholarship suggests the latest rupture may, for once, be final."
+      },
+      {
+        "text": "STATUS: RECONCILIATION CYCLE SUSPENDED",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.44, 0.075],
+    "labelSize": [0.78, 0.88]
   },
   {
     "type": "painting",
@@ -350,10 +406,28 @@
     "rotation": [0, -1.5707963268, 0],
     "size": [0.81, 1.4],
     "image": "/rooms/room-4/666.jpg",
-    "title": "ARCHIVE ENTRY 005",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.63, 0.32]
+    "title": "THE FORMER BOYFRIEND, LATER RECLASSIFIED",
+    "year": "Early Romantic Period",
+    "labelLines": [
+      {
+        "text": "Originally catalogued as a boyfriend, the sitter was later successfully reclassified as a friend — an unusually stable transition by historical standards."
+      },
+      {
+        "text": "The arrangement remained operational until the arrival of a new romantic administration, after which contact ceased abruptly."
+      },
+      {
+        "text": "He has since entered a new phase of life and recently became a father."
+      },
+      {
+        "text": "Archival records also confirm the temporary transfer of an elderly green vehicle for an expedition to the dacha."
+      },
+      {
+        "text": "STATUS: ACCESS REVOKED BY THIRD-PARTY ADMINISTRATION",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.41, 0.075],
+    "labelSize": [0.75, 0.82]
   },
   {
     "type": "painting",
@@ -362,10 +436,25 @@
     "rotation": [0, -1.5707963268, 0],
     "size": [1.15, 1.4],
     "image": "/rooms/room-4/888.jpg",
-    "title": "ARCHIVE ENTRY 006",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.9, 0.32]
+    "title": "THE PERIODIC FRIEND",
+    "year": "Warsaw Period",
+    "labelLines": [
+      {
+        "text": "Once a close and frequent presence in the subject’s life."
+      },
+      {
+        "text": "The relationship now operates in cycles: disappearance, reappearance, plans, silence, and occasional successful reunions."
+      },
+      {
+        "text": "Recent activity has been further complicated by moving boxes, apartment logistics and the general instability of adult schedules."
+      },
+      {
+        "text": "STATUS: INTERMITTENTLY ACTIVE",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.4, 0.075],
+    "labelSize": [1.02, 0.82]
   },
   {
     "type": "painting",
@@ -374,10 +463,24 @@
     "rotation": [0, 0, 0],
     "size": [1.6, 1.2],
     "image": "/rooms/room-4/444.jpg",
-    "title": "ARCHIVE ENTRY 007",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.03, 0.075],
-    "labelSize": [1.25, 0.32]
+    "title": "THE LINKEDIN ERA",
+    "labelLines": [
+      {
+        "text": "Once colleagues. Once regularly present in one another’s lives."
+      },
+      {
+        "text": "Following a sequence of departures, career changes and major life events, the connection entered its current phase:"
+      },
+      {
+        "text": "visible, respectable, and almost entirely digital."
+      },
+      {
+        "text": "STATUS: ARCHIVED IN PROFESSIONAL NETWORKS",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.24, 0.075],
+    "labelSize": [1.35, 0.78]
   },
   {
     "type": "painting",
@@ -386,10 +489,20 @@
     "rotation": [0, 0, 0],
     "size": [1.45, 1.2],
     "image": "/rooms/room-4/777.jpg",
-    "title": "ARCHIVE ENTRY 008",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.03, 0.075],
-    "labelSize": [1.12, 0.32]
+    "title": "THE CAPITAL ALLOCATION QUESTION",
+    "labelLines": [
+      {
+        "text": "Career acceleration, multiple properties and suspiciously effective financial decision-making have made this sitter a continuing subject of economic interest."
+      },
+      {
+        "text": "Exact sources of confidence remain undocumented."
+      },
+      {
+        "text": "STATUS: FINANCIALLY MYSTERIOUS, OPERATIONALLY USEFUL"
+      }
+    ],
+    "labelPosition": [0, -1.22, 0.075],
+    "labelSize": [1.25, 0.8]
   },
   {
     "type": "painting",
@@ -398,10 +511,24 @@
     "rotation": [0, 0, 0],
     "size": [1.26, 1.4],
     "image": "/rooms/room-4/999.jpg",
-    "title": "ARCHIVE ENTRY 009",
-    "year": "Documentation pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [1, 0.32]
+    "title": "THE SELF-APPRAISED ASSET",
+    "labelLines": [
+      {
+        "text": "A successful German professional with a large house, corporate vehicle and strong opinions regarding his own market value."
+      },
+      {
+        "text": "Despite considerable apparent prosperity, shared expenses — including utilities and McDonald’s — were handled with admirable fiscal discipline."
+      },
+      {
+        "text": "The sitter played a prominent role in the Bali period and was widely regarded as an excellent host."
+      },
+      {
+        "text": "STATUS: DECOMMISSIONED BY ASSOCIATION",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.4, 0.075],
+    "labelSize": [1.1, 0.82]
   },
   {
     "type": "painting",

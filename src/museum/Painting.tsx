@@ -110,8 +110,9 @@ export function Painting({ config }: PaintingProps) {
     labelSize = [2.75, 0.8],
     descriptionItalic,
     placeholderText,
+    labelLines,
   } = config
-  const hasDetailedLabel = Boolean(year || description || note)
+  const hasDetailedLabel = Boolean(year || description || note || labelLines?.length)
   const resolvedLabelPosition: [number, number, number] = labelPosition ?? [
     0,
     -size[1] / 2 - (frame === 'ornate' ? 1.06 : 0.62),
@@ -151,6 +152,7 @@ export function Painting({ config }: PaintingProps) {
             description={description}
             note={note}
             descriptionItalic={descriptionItalic}
+            labelLines={labelLines}
             width={labelSize[0]}
             height={labelSize[1]}
           />

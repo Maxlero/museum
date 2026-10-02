@@ -30,7 +30,7 @@ function ConfiguredMuseumPainting({ painting }: { painting: PaintingConfig }) {
   if (!painting.image || !painting.framePreset) return null
 
   const [width, height] = painting.size
-  const hasLabel = Boolean(painting.year || painting.note)
+  const hasLabel = Boolean(painting.year || painting.note || painting.labelLines?.length)
   const labelPosition = painting.labelPosition ?? [0, -height / 2 - 0.62, 0.055]
   const labelSize = painting.labelSize ?? [2.75, 0.8]
 
@@ -53,6 +53,7 @@ function ConfiguredMuseumPainting({ painting }: { painting: PaintingConfig }) {
             description={painting.description}
             note={painting.note}
             descriptionItalic={painting.descriptionItalic}
+            labelLines={painting.labelLines}
             width={labelSize[0]}
             height={labelSize[1]}
           />
