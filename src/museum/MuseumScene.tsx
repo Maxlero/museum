@@ -9,6 +9,7 @@ import { PrivateCollectionRoom } from './PrivateCollectionRoom'
 import { SecondRoom } from './SecondRoom'
 import { StaffArchiveRoom } from './StaffArchiveRoom'
 import { WorldColliders } from './WorldColliders'
+import { ActiveCollectionRoom } from './ActiveCollectionRoom'
 
 export function MuseumScene() {
   return (
@@ -29,6 +30,7 @@ export function MuseumScene() {
       <PrivateCollectionRoom />
       <DecommissionedWing />
       <StaffArchiveRoom />
+      <ActiveCollectionRoom />
       <MuseumDoors />
       <WorldColliders />
       <IntroCameraMotion />

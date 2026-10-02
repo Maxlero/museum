@@ -1,10 +1,11 @@
 import { Html } from '@react-three/drei'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Group, MathUtils, Vector3 } from 'three'
 import { removeDoorCollider, updateDoorCollider } from '../player/collisionWorld'
-import type { DoorAccessSignConfig, KeypadConfig } from '../museum/config'
-import { DoorAccessPanel } from './DoorAccessPanel'
+import { useAccessChallenge } from '../interaction/AccessChallengeContext'
+import type { AccessTerminalConfig, DoorAccessSignConfig, KeypadConfig } from '../museum/config'
+import { AccessTerminal, type AccessMode, type AccessStatus } from './AccessTerminal'
 
 type DoorProps = {
   id: string
@@ -17,12 +18,14 @@ type DoorProps = {
   interactionDistance?: number
   openSpeed?: number
   accessCode?: string
+  challengeMode?: AccessMode
   collectionTitle?: string
   restrictedMessage?: string
   grantedMessage?: string
   panelSide?: -1 | 1
   accessSign?: DoorAccessSignConfig
   keypad?: KeypadConfig
+  terminal?: AccessTerminalConfig
   autoCloseSeconds?: number
 }
 
@@ -37,12 +40,14 @@ export function Door({
   interactionDistance = 2.35,
   openSpeed = 6,
   accessCode,
+  challengeMode,
   collectionTitle = 'PRIVATE COLLECTION',
   restrictedMessage = 'Access restricted.',
   grantedMessage = 'Access granted.\nCurator assumes no responsibility for what follows.',
   panelSide = -1,
   accessSign,
   keypad,
+  terminal,
   autoCloseSeconds,
 }: DoorProps) {
   const { camera } = useThree()
@@ -51,61 +56,36 @@ export function Door({
   const nearbyRef = useRef(false)
   const [nearby, setNearby] = useState(false)
   const [open, setOpen] = useState(false)
-  const [unlocked, setUnlocked] = useState(!accessCode)
-  const [keypadActive, setKeypadActive] = useState(false)
-  const [enteredCode, setEnteredCode] = useState('')
-  const [accessStatus, setAccessStatus] = useState<'locked' | 'granted' | 'denied'>(
-    accessCode ? 'locked' : 'granted',
-  )
+  const accessMode = challengeMode ?? (accessCode ? 'pin' : undefined)
+  const [unlocked, setUnlocked] = useState(!accessMode)
+  const [accessStatus, setAccessStatus] = useState<AccessStatus>(accessMode ? 'locked' : 'granted')
+  const { completedDoors } = useAccessChallenge()
   const doorCenter = useMemo(() => new Vector3(), [])
+  const hasAccessTerminal = Boolean(accessMode && (terminal || keypad))
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
-      if (keypadActive) {
-        if (event.code === 'Escape') {
-          setKeypadActive(false)
-          setEnteredCode('')
-          return
-        }
-        if (event.code === 'Backspace') {
-          event.preventDefault()
-          setEnteredCode((current) => current.slice(0, -1))
-          return
-        }
-        if (event.code === 'Enter') {
-          if (enteredCode === accessCode) {
-            setUnlocked(true)
-            setAccessStatus('granted')
-            setKeypadActive(false)
-            setEnteredCode('')
-            setOpen(true)
-          } else {
-            setAccessStatus('denied')
-            setEnteredCode('')
-          }
-          return
-        }
-        if (/^Digit\d$/.test(event.code) || /^Numpad\d$/.test(event.code)) {
-          const digit = event.code.slice(-1)
-          setAccessStatus('locked')
-          setEnteredCode((current) => (current + digit).slice(0, 8))
-        }
-        return
-      }
-
-      if (event.code === 'KeyE' && !event.repeat && nearbyRef.current) {
-        if (unlocked) {
-          setOpen((current) => !current)
-        } else {
-          setAccessStatus('locked')
-          setEnteredCode('')
-          setKeypadActive(true)
-        }
-      }
+      if (hasAccessTerminal || event.code !== 'KeyE' || event.repeat || !nearbyRef.current) return
+      setOpen((current) => !current)
     }
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [accessCode, enteredCode, keypadActive, unlocked])
+  }, [hasAccessTerminal])
+
+  useEffect(() => {
+    if (accessMode !== 'solitaire' || !completedDoors.has(id) || unlocked) return
+    setUnlocked(true)
+    setAccessStatus('granted')
+    setOpen(true)
+  }, [accessMode, completedDoors, id, unlocked])
+
+  const unlock = useCallback(() => {
+    setUnlocked(true)
+    setAccessStatus('granted')
+    setOpen(true)
+  }, [])
+
+  const toggle = useCallback(() => setOpen((current) => !current), [])
 
   useEffect(() => () => removeDoorCollider(id), [id])
 
@@ -172,27 +152,31 @@ export function Door({
         </mesh>
       </group>
 
-      {accessCode && accessSign && keypad && (
-        <DoorAccessPanel
+      {accessMode && hasAccessTerminal && (
+        <AccessTerminal
+          doorId={id}
+          mode={accessMode}
           side={panelSide}
           title={collectionTitle}
           restrictedMessage={restrictedMessage}
+          accessCode={accessCode}
           status={accessStatus}
+          nearby={nearby}
+          unlocked={unlocked}
+          open={open}
           accessSign={accessSign}
           keypad={keypad}
+          terminal={terminal}
+          promptZ={width / 2}
+          onUnlock={unlock}
+          onToggle={toggle}
         />
       )}
 
-      {nearby && (
+      {nearby && !hasAccessTerminal && (
         <Html center position={[panelSide * 0.5, 1.45, width / 2]} zIndexRange={[30, 0]}>
           <div className="door-prompt">
-            <span>Press E to {unlocked ? (open ? 'close' : 'open') : 'use keypad'}</span>
-            {keypadActive && (
-              <span className="door-code-entry">
-                <strong>{enteredCode ? '•'.repeat(enteredCode.length) : 'Введите код'}</strong>
-                <small>цифры · Enter — подтвердить · Esc — отмена</small>
-              </span>
-            )}
+            <span>Press E to {open ? 'close' : 'open'}</span>
           </div>
         </Html>
       )}

@@ -210,3 +210,168 @@ h1 {
   font-size: 9px;
   letter-spacing: 0.04em;
 }
+
+.terminal-overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(5, 6, 5, 0.82);
+  backdrop-filter: blur(8px) saturate(0.7);
+  z-index: 40;
+}
+
+.terminal-window {
+  width: min(1080px, 94vw);
+  height: min(760px, 90vh);
+  overflow: hidden;
+  border: 3px ridge #d4d0c8;
+  color: #111;
+  background: #c0c0c0;
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.65);
+  font-family: 'Courier New', monospace;
+}
+
+.terminal-titlebar {
+  display: flex;
+  height: 34px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px 4px 3px 9px;
+  color: white;
+  background: linear-gradient(90deg, #000080, #1084d0);
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.terminal-titlebar button {
+  width: 27px;
+  height: 25px;
+  border: 2px outset #eee;
+  padding: 0;
+  color: #111;
+  background: #c0c0c0;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 19px;
+  cursor: pointer;
+}
+
+.terminal-screen {
+  display: flex;
+  height: calc(100% - 34px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 14px solid #c0c0c0;
+  outline: 3px inset #f4f4f4;
+  color: #9effae;
+  background:
+    repeating-linear-gradient(0deg, rgba(80, 255, 110, 0.025) 0 2px, transparent 2px 5px),
+    radial-gradient(circle, #122016, #030704 75%);
+  text-align: center;
+}
+
+.terminal-mark {
+  display: grid;
+  width: 76px;
+  height: 76px;
+  place-items: center;
+  border: 2px solid #64d37b;
+  margin-bottom: 25px;
+  font-family: Georgia, serif;
+  font-size: 48px;
+}
+
+.terminal-kicker {
+  margin: 0 0 13px;
+  font-size: clamp(14px, 2vw, 20px);
+  letter-spacing: 0.16em;
+}
+
+.terminal-screen h2 {
+  margin: 0;
+  color: #ebf5e8;
+  font-size: clamp(24px, 4vw, 48px);
+  font-weight: 400;
+}
+
+.terminal-message {
+  margin: 22px 0 34px;
+  color: #81a987;
+  font-size: 16px;
+}
+
+.terminal-action {
+  border: 2px outset #f0f0f0;
+  padding: 11px 22px;
+  color: #111;
+  background: #c0c0c0;
+  font-family: 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.terminal-action:active,
+.terminal-titlebar button:active {
+  border-style: inset;
+}
+
+.terminal-screen small {
+  margin-top: 24px;
+  color: #4f7958;
+}
+
+.solitaire-frame {
+  display: block;
+  width: 100%;
+  height: calc(100% - 34px);
+  border: 0;
+  background: #007b4b;
+}
+
+.achievement-overlay {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  display: flex;
+  min-width: 320px;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #ad8b51;
+  padding: 17px 20px;
+  color: #f4ead7;
+  background: rgba(18, 14, 10, 0.94);
+  box-shadow: 0 12px 42px rgba(0, 0, 0, 0.48);
+  font-family: Georgia, serif;
+  animation: achievement-in 0.45s ease both;
+  z-index: 50;
+}
+
+.achievement-overlay span {
+  margin-bottom: 4px;
+  color: #c8a565;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.achievement-overlay strong {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+@keyframes achievement-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 620px) {
+  .terminal-overlay { padding: 7px; }
+  .terminal-window { width: 100%; height: 96vh; }
+  .achievement-overlay { right: 12px; bottom: 12px; min-width: 0; width: calc(100% - 24px); }
+}

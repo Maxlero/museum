@@ -30,6 +30,10 @@ export function SecondRoom() {
     (object): object is DoorConfig =>
       object.type === 'door' && object.id === 'room-two-to-decommissioned-wing',
   )
+  const activeCollectionDoor = objects.find(
+    (object): object is DoorConfig =>
+      object.type === 'door' && object.id === 'room-two-to-active-collection',
+  )
   const roomMinX = centerX - width / 2
   const roomMaxX = centerX + width / 2
   const doorwayStart = privateDoor?.position[0] ?? centerX - 0.75
@@ -44,6 +48,12 @@ export function SecondRoom() {
   const backDoorEnd = backDoorStart + backDoorWidth
   const beforeBackDoorWidth = backDoorStart - roomMinX
   const afterBackDoorWidth = roomMaxX - backDoorEnd
+  const sideDoorStart = activeCollectionDoor?.position[2] ?? centerZ - 1.5
+  const sideDoorWidth = activeCollectionDoor?.width ?? 1.5
+  const sideDoorHeight = activeCollectionDoor?.height ?? 2.25
+  const sideDoorEnd = sideDoorStart + sideDoorWidth
+  const beforeSideDoorDepth = sideDoorStart - (centerZ - depth / 2)
+  const afterSideDoorDepth = centerZ + depth / 2 - sideDoorEnd
   const [floorSource, wallSource] = useTexture(['/floor.jpg', '/wall.jpg'])
   const floorTexture = useMemo(() => tiledTexture(floorSource, width / 5, depth / 5), [depth, floorSource, width])
   const longWallTexture = useMemo(() => tiledTexture(wallSource, width / 4, height / 4), [height, wallSource, width])
@@ -111,8 +121,29 @@ export function SecondRoom() {
         <boxGeometry args={[doorwayWidth, height - doorwayHeight, wallThickness]} />
         <meshStandardMaterial map={longWallTexture} color="#c8c1b6" roughness={0.94} />
       </mesh>
-      <mesh receiveShadow position={[centerX + width / 2, baseY + height / 2, centerZ]}>
-        <boxGeometry args={[wallThickness, height, depth]} />
+      <mesh
+        receiveShadow
+        position={[centerX + width / 2, baseY + height / 2, centerZ - depth / 2 + beforeSideDoorDepth / 2]}
+      >
+        <boxGeometry args={[wallThickness, height, beforeSideDoorDepth]} />
+        <meshStandardMaterial map={sideWallTexture} color="#c8c1b6" roughness={0.94} />
+      </mesh>
+      <mesh
+        receiveShadow
+        position={[centerX + width / 2, baseY + height / 2, sideDoorEnd + afterSideDoorDepth / 2]}
+      >
+        <boxGeometry args={[wallThickness, height, afterSideDoorDepth]} />
+        <meshStandardMaterial map={sideWallTexture} color="#c8c1b6" roughness={0.94} />
+      </mesh>
+      <mesh
+        receiveShadow
+        position={[
+          centerX + width / 2,
+          baseY + sideDoorHeight + (height - sideDoorHeight) / 2,
+          sideDoorStart + sideDoorWidth / 2,
+        ]}
+      >
+        <boxGeometry args={[wallThickness, height - sideDoorHeight, sideDoorWidth]} />
         <meshStandardMaterial map={sideWallTexture} color="#c8c1b6" roughness={0.94} />
       </mesh>
 

@@ -1,10 +1,12 @@
 import { useProgress } from '@react-three/drei'
 import { useEffect, useState } from 'react'
+import { useAccessChallenge } from '../interaction/AccessChallengeContext'
 
 export function StartOverlay() {
   const [locked, setLocked] = useState(false)
   const [ready, setReady] = useState(false)
   const { active, progress } = useProgress()
+  const { activeTerminal } = useAccessChallenge()
 
   useEffect(() => {
     const onChange = () => setLocked(Boolean(document.pointerLockElement))
@@ -22,6 +24,8 @@ export function StartOverlay() {
     if (!ready) return
     document.querySelector('canvas')?.requestPointerLock()
   }
+
+  if (activeTerminal) return null
 
   return (
     <div className={`start-overlay ${ready ? 'ready' : ''} ${locked ? 'hidden' : ''}`} onClick={enter}>

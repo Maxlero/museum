@@ -1,5 +1,5 @@
 import { Door } from '../components/Door'
-import type { DoorAccessSignConfig, DoorConfig, KeypadConfig } from './config'
+import type { AccessTerminalConfig, DoorAccessSignConfig, DoorConfig, KeypadConfig } from './config'
 import { useMuseumObjects } from './useMuseumObjects'
 
 export function MuseumDoors() {
@@ -17,6 +17,10 @@ export function MuseumDoors() {
         const keypad = objects.find(
           (object): object is KeypadConfig => object.type === 'keypad' && object.doorId === doorId,
         )
+        const terminal = objects.find(
+          (object): object is AccessTerminalConfig =>
+            object.type === 'accessTerminal' && object.doorId === doorId,
+        )
 
         return (
           <Door
@@ -30,12 +34,14 @@ export function MuseumDoors() {
             openSpeed={door.openSpeed}
             interactionDistance={door.interactionDistance}
             accessCode={door.accessCode}
+            challengeMode={door.challengeMode ?? terminal?.mode}
             collectionTitle={door.collectionTitle}
             restrictedMessage={door.restrictedMessage}
             grantedMessage={door.grantedMessage}
             panelSide={door.panelSide}
             accessSign={accessSign}
             keypad={keypad}
+            terminal={terminal}
             autoCloseSeconds={door.autoCloseSeconds}
           />
         )

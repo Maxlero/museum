@@ -6,6 +6,7 @@ import {
   ROOM,
   ROOM_TWO,
   STAFF_ARCHIVE_ROOM,
+  ACTIVE_COLLECTION_ROOM,
   type DoorConfig,
   type RoomConfig,
 } from './config'
@@ -40,6 +41,10 @@ export function WorldColliders() {
       (object): object is DoorConfig =>
         object.type === 'door' && object.id === 'decommissioned-to-staff-archive',
     )
+    const activeCollectionDoor = objects.find(
+      (object): object is DoorConfig =>
+        object.type === 'door' && object.id === 'room-two-to-active-collection',
+    )
     const roomOne = objects.find(
       (object): object is RoomConfig => object.type === 'room' && object.id === 'room-one',
     )
@@ -56,6 +61,10 @@ export function WorldColliders() {
     )
     const archiveRoom = objects.find(
       (object): object is RoomConfig => object.type === 'room' && object.id === 'staff-archive',
+    )
+    const activeCollectionRoom = objects.find(
+      (object): object is RoomConfig =>
+        object.type === 'room' && object.id === 'active-collection-room',
     )
 
     const [roomOneX, , roomOneZ] = roomOne?.position ?? [0, 0, 0]
@@ -114,6 +123,22 @@ export function WorldColliders() {
     const archiveMinZ = archiveZ - archiveDepth / 2
     const archiveMaxZ = archiveZ + archiveDepth / 2
 
+    const [activeX, , activeZ] = activeCollectionRoom?.position ?? [
+      ACTIVE_COLLECTION_ROOM.centerX,
+      0,
+      ACTIVE_COLLECTION_ROOM.centerZ,
+    ]
+    const [activeWidth, , activeDepth] = activeCollectionRoom?.size ?? [
+      ACTIVE_COLLECTION_ROOM.width,
+      ACTIVE_COLLECTION_ROOM.height,
+      ACTIVE_COLLECTION_ROOM.depth,
+    ]
+    const activeThickness = activeCollectionRoom?.wallThickness ?? ROOM.wallThickness
+    const activeMinX = activeX - activeWidth / 2
+    const activeMaxX = activeX + activeWidth / 2
+    const activeMinZ = activeZ - activeDepth / 2
+    const activeMaxZ = activeZ + activeDepth / 2
+
     const firstStart = firstDoor?.position[2] ?? 3.7
     const firstEnd = firstStart + (firstDoor?.width ?? 1.6)
     const privateStart = privateDoor?.position[0] ?? 9.25
@@ -122,6 +147,8 @@ export function WorldColliders() {
     const decommissionedEnd = decommissionedStart + (decommissionedDoor?.width ?? 1.5)
     const archiveStart = archiveDoor?.position[2] ?? -11.25
     const archiveEnd = archiveStart + (archiveDoor?.width ?? 1.5)
+    const activeStart = activeCollectionDoor?.position[2] ?? -1.5
+    const activeEnd = activeStart + (activeCollectionDoor?.width ?? 1.5)
 
     configureWallColliders([
       verticalWall(roomOneMinX, roomOneMinZ, roomOneMaxZ, roomOneThickness),
@@ -130,7 +157,8 @@ export function WorldColliders() {
       verticalWall(roomOneMaxX, roomOneMinZ, firstStart, roomOneThickness),
       verticalWall(roomOneMaxX, firstEnd, roomOneMaxZ, roomOneThickness),
 
-      verticalWall(roomTwoMaxX, roomTwoMinZ, roomTwoMaxZ, roomTwoThickness),
+      verticalWall(roomTwoMaxX, roomTwoMinZ, activeStart, roomTwoThickness),
+      verticalWall(roomTwoMaxX, activeEnd, roomTwoMaxZ, roomTwoThickness),
       horizontalWall(roomTwoMinZ, roomTwoMinX, decommissionedStart, roomTwoThickness),
       horizontalWall(roomTwoMinZ, decommissionedEnd, roomTwoMaxX, roomTwoThickness),
       horizontalWall(roomTwoMaxZ, roomTwoMinX, privateStart, roomTwoThickness),
@@ -158,6 +186,12 @@ export function WorldColliders() {
       horizontalWall(archiveMinZ, archiveMinX, archiveMaxX, archiveThickness),
       horizontalWall(archiveMaxZ, archiveMinX, archiveMaxX, archiveThickness),
       verticalWall(archiveMaxX, archiveMinZ, archiveMaxZ, archiveThickness),
+
+      verticalWall(activeMinX, activeMinZ, activeStart, activeThickness),
+      verticalWall(activeMinX, activeEnd, activeMaxZ, activeThickness),
+      verticalWall(activeMaxX, activeMinZ, activeMaxZ, activeThickness),
+      horizontalWall(activeMinZ, activeMinX, activeMaxX, activeThickness),
+      horizontalWall(activeMaxZ, activeMinX, activeMaxX, activeThickness),
     ])
   }, [objects])
 

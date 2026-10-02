@@ -46,6 +46,14 @@ export const STAFF_ARCHIVE_ROOM = {
   height: 4,
 } as const
 
+export const ACTIVE_COLLECTION_ROOM = {
+  centerX: 21,
+  centerZ: -0.75,
+  width: 8,
+  depth: 5,
+  height: 4.2,
+} as const
+
 export type PaintingConfig = {
   type: 'painting'
   id: string | number
@@ -78,7 +86,7 @@ export type RoomConfig = {
   position: [number, number, number]
   size: [number, number, number]
   wallThickness?: number
-  style?: 'gallery' | 'privateCollection' | 'decommissioned' | 'archive'
+  style?: 'gallery' | 'privateCollection' | 'decommissioned' | 'archive' | 'activeCollection'
   skylight?: boolean
 }
 
@@ -107,11 +115,22 @@ export type DoorConfig = {
   openSpeed?: number
   interactionDistance?: number
   accessCode?: string
+  challengeMode?: 'pin' | 'solitaire'
   collectionTitle?: string
   restrictedMessage?: string
   grantedMessage?: string
   panelSide?: -1 | 1
   autoCloseSeconds?: number
+}
+
+export type AccessTerminalConfig = {
+  type: 'accessTerminal'
+  id: string
+  doorId: string
+  mode: 'pin' | 'solitaire'
+  position: [number, number, number]
+  rotation: [number, number, number]
+  size: [number, number, number]
 }
 
 export type DoorAccessSignConfig = {
@@ -139,3 +158,4 @@ export type MuseumObjectConfig =
   | DoorConfig
   | DoorAccessSignConfig
   | KeypadConfig
+  | AccessTerminalConfig

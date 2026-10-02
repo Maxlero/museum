@@ -28,6 +28,15 @@
   },
   {
     "type": "room",
+    "id": "active-collection-room",
+    "position": [21, 0, -0.75],
+    "size": [8, 4.2, 5],
+    "wallThickness": 0.25,
+    "style": "activeCollection",
+    "skylight": false
+  },
+  {
+    "type": "room",
     "id": "decommissioned-wing",
     "position": [12, 0, -14],
     "size": [8, 4.35, 14],
@@ -488,6 +497,21 @@
     ]
   },
   {
+    "type": "roomSign",
+    "id": "active-collection-sign",
+    "room": "",
+    "title": "THE ACTIVE COLLECTION",
+    "position": [16.86, 3.02, -0.75],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [2.25, 0.7],
+    "lines": [
+      {
+        "text": "No life exists in isolation.",
+        "italic": true
+      }
+    ]
+  },
+  {
     "type": "door",
     "id": "room-one-to-room-two",
     "position": [6.84, 0, 3.7],
@@ -510,6 +534,7 @@
     "openSpeed": 1.65,
     "interactionDistance": 2.4,
     "accessCode": "228",
+    "challengeMode": "pin",
     "collectionTitle": "RED ROOM",
     "restrictedMessage": "Access restricted.",
     "grantedMessage": "Access granted.\nCurator assumes no responsibility for what follows.",
@@ -543,6 +568,22 @@
     "autoCloseSeconds": 25
   },
   {
+    "type": "door",
+    "id": "room-two-to-active-collection",
+    "position": [16.84, 0, -1.5],
+    "rotation": [0, 0, 0],
+    "width": 1.5,
+    "height": 2.25,
+    "openAngle": -1.5707963268,
+    "openSpeed": 1.8,
+    "interactionDistance": 2.5,
+    "challengeMode": "solitaire",
+    "collectionTitle": "THE ACTIVE COLLECTION",
+    "restrictedMessage": "No life exists in isolation.",
+    "panelSide": -1,
+    "autoCloseSeconds": 25
+  },
+  {
     "type": "doorAccessSign",
     "id": "private-collection-access-sign",
     "doorId": "room-two-to-private-collection",
@@ -557,5 +598,14 @@
     "position": [0.005, 0.78, 2.08],
     "rotation": [0, 0, 0],
     "size": [0.54, 0.68, 0.08]
+  },
+  {
+    "type": "accessTerminal",
+    "id": "active-collection-terminal",
+    "doorId": "room-two-to-active-collection",
+    "mode": "solitaire",
+    "position": [-0.02, 1.18, 2.05],
+    "rotation": [0, 0, 0],
+    "size": [0.78, 1.05, 0.12]
   }
 ]
