@@ -29,11 +29,23 @@
   {
     "type": "room",
     "id": "active-collection-room",
-    "position": [24.1, 0, -0.75],
-    "size": [14, 4.35, 7],
+    "position": [23.775, 0, 5.85],
+    "size": [13.45, 4.8, 16.3],
     "wallThickness": 0.25,
     "style": "activeCollection",
-    "skylight": true
+    "skylight": false,
+    "segments": [
+      {
+        "id": "entry",
+        "position": [20.55, 0, -0.75],
+        "size": [7, 4.2, 3.1]
+      },
+      {
+        "id": "reveal",
+        "position": [26, 0, 7.4],
+        "size": [9, 4.8, 13.2]
+      }
+    ]
   },
   {
     "type": "room",
@@ -52,6 +64,15 @@
     "wallThickness": 0.25,
     "style": "archive",
     "skylight": false
+  },
+  {
+    "type": "giftPedestal",
+    "id": "next-chapter-gift",
+    "position": [26, 0, 7.6],
+    "rotation": [0, 0, 0],
+    "size": [1.35, 1.18, 1.05],
+    "title": "THE ORIGINAL",
+    "message": "Some gifts do not belong only to the digital collection. Please ask the curator for the original."
   },
   {
     "type": "painting",
@@ -388,8 +409,9 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-1/444.jpg",
-    "title": "COLLECTION ENTRY 004",
-    "year": "Details pending.",
+    "title": "THE CURATOR’S VIEW",
+    "year": "Greece, est. 2025",
+    "description": "One of many moments in which the subject was simply walking — and still worth photographing.",
     "labelPosition": [0, -1.13, 0.075],
     "labelSize": [0.84, 0.32]
   },
@@ -412,8 +434,9 @@
     "rotation": [0, 1.5707963268, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-1/666.jpg",
-    "title": "COLLECTION ENTRY 006",
-    "year": "Details pending.",
+    "title": "THE DINNER WE COULDN’T SEE",
+    "year": "est. 2026",
+    "description": "An evening remembered not for how it looked, but for how it felt.  \nThe subject returned to the light visibly satisfied.",
     "labelPosition": [0, -1.13, 0.075],
     "labelSize": [0.84, 0.32]
   },
@@ -940,6 +963,21 @@
     "lines": [
       {
         "text": "No life exists in isolation.",
+        "italic": true
+      }
+    ]
+  },
+  {
+    "type": "roomSign",
+    "id": "next-chapter-interior-sign",
+    "room": "",
+    "title": "THE NEXT CHAPTER",
+    "position": [23.9, 2.55, -0.75],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [2.15, 0.72],
+    "lines": [
+      {
+        "text": "Some exhibits do not exist yet.",
         "italic": true
       }
     ]

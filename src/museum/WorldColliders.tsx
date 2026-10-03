@@ -123,21 +123,19 @@ export function WorldColliders() {
     const archiveMinZ = archiveZ - archiveDepth / 2
     const archiveMaxZ = archiveZ + archiveDepth / 2
 
-    const [activeX, , activeZ] = activeCollectionRoom?.position ?? [
-      ACTIVE_COLLECTION_ROOM.centerX,
-      0,
-      ACTIVE_COLLECTION_ROOM.centerZ,
-    ]
-    const [activeWidth, , activeDepth] = activeCollectionRoom?.size ?? [
-      ACTIVE_COLLECTION_ROOM.width,
-      ACTIVE_COLLECTION_ROOM.height,
-      ACTIVE_COLLECTION_ROOM.depth,
-    ]
+    const activeEntry = activeCollectionRoom?.segments?.find((segment) => segment.id === 'entry') ??
+      ACTIVE_COLLECTION_ROOM.entry
+    const activeReveal = activeCollectionRoom?.segments?.find((segment) => segment.id === 'reveal') ??
+      ACTIVE_COLLECTION_ROOM.reveal
     const activeThickness = activeCollectionRoom?.wallThickness ?? ROOM.wallThickness
-    const activeMinX = activeX - activeWidth / 2
-    const activeMaxX = activeX + activeWidth / 2
-    const activeMinZ = activeZ - activeDepth / 2
-    const activeMaxZ = activeZ + activeDepth / 2
+    const activeEntryMinX = activeEntry.position[0] - activeEntry.size[0] / 2
+    const activeEntryMaxX = activeEntry.position[0] + activeEntry.size[0] / 2
+    const activeEntryMinZ = activeEntry.position[2] - activeEntry.size[2] / 2
+    const activeEntryMaxZ = activeEntry.position[2] + activeEntry.size[2] / 2
+    const activeRevealMinX = activeReveal.position[0] - activeReveal.size[0] / 2
+    const activeRevealMaxX = activeReveal.position[0] + activeReveal.size[0] / 2
+    const activeRevealMinZ = activeReveal.position[2] - activeReveal.size[2] / 2
+    const activeRevealMaxZ = activeReveal.position[2] + activeReveal.size[2] / 2
 
     const firstStart = firstDoor?.position[2] ?? 3.7
     const firstEnd = firstStart + (firstDoor?.width ?? 1.6)
@@ -187,9 +185,13 @@ export function WorldColliders() {
       horizontalWall(archiveMaxZ, archiveMinX, archiveMaxX, archiveThickness),
       verticalWall(archiveMaxX, archiveMinZ, archiveMaxZ, archiveThickness),
 
-      verticalWall(activeMaxX, activeMinZ, activeMaxZ, activeThickness),
-      horizontalWall(activeMinZ, activeMinX, activeMaxX, activeThickness),
-      horizontalWall(activeMaxZ, activeMinX, activeMaxX, activeThickness),
+      horizontalWall(activeEntryMinZ, activeEntryMinX, activeEntryMaxX, activeThickness),
+      horizontalWall(activeEntryMaxZ, activeEntryMinX, activeRevealMinX, activeThickness),
+      verticalWall(activeEntryMaxX, activeEntryMinZ, activeEntryMaxZ, activeThickness),
+      verticalWall(activeRevealMinX, activeRevealMinZ, activeRevealMaxZ, activeThickness),
+      verticalWall(activeRevealMaxX, activeRevealMinZ, activeRevealMaxZ, activeThickness),
+      horizontalWall(activeRevealMinZ, activeEntryMaxX, activeRevealMaxX, activeThickness),
+      horizontalWall(activeRevealMaxZ, activeRevealMinX, activeRevealMaxX, activeThickness),
     ])
   }, [objects])
 

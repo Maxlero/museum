@@ -6,7 +6,7 @@ export function StartOverlay() {
   const [locked, setLocked] = useState(false)
   const [ready, setReady] = useState(false)
   const { active, progress } = useProgress()
-  const { activeTerminal } = useAccessChallenge()
+  const { interactionOpen } = useAccessChallenge()
 
   useEffect(() => {
     const onChange = () => setLocked(Boolean(document.pointerLockElement))
@@ -25,7 +25,7 @@ export function StartOverlay() {
     document.querySelector('canvas')?.requestPointerLock()
   }
 
-  if (activeTerminal) return null
+  if (interactionOpen) return null
 
   return (
     <div className={`start-overlay ${ready ? 'ready' : ''} ${locked ? 'hidden' : ''}`} onClick={enter}>

@@ -47,11 +47,14 @@ export const STAFF_ARCHIVE_ROOM = {
 } as const
 
 export const ACTIVE_COLLECTION_ROOM = {
-  centerX: 24.1,
-  centerZ: -0.75,
-  width: 14,
-  depth: 7,
-  height: 4.35,
+  entry: {
+    position: [20.55, 0, -0.75] as [number, number, number],
+    size: [7, 4.2, 3.1] as [number, number, number],
+  },
+  reveal: {
+    position: [26, 0, 7.4] as [number, number, number],
+    size: [9, 4.8, 13.2] as [number, number, number],
+  },
 } as const
 
 export type PaintingConfig = {
@@ -93,6 +96,21 @@ export type RoomConfig = {
   wallThickness?: number
   style?: 'gallery' | 'privateCollection' | 'decommissioned' | 'archive' | 'activeCollection'
   skylight?: boolean
+  segments?: Array<{
+    id: string
+    position: [number, number, number]
+    size: [number, number, number]
+  }>
+}
+
+export type GiftPedestalConfig = {
+  type: 'giftPedestal'
+  id: string
+  position: [number, number, number]
+  rotation: [number, number, number]
+  size: [number, number, number]
+  title: string
+  message: string
 }
 
 export type RoomSignConfig = {
@@ -164,3 +182,4 @@ export type MuseumObjectConfig =
   | DoorAccessSignConfig
   | KeypadConfig
   | AccessTerminalConfig
+  | GiftPedestalConfig

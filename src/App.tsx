@@ -4,6 +4,7 @@ import { Crosshair } from './ui/Crosshair'
 import { StartOverlay } from './ui/StartOverlay'
 import { AccessChallengeProvider } from './interaction/AccessChallengeContext'
 import { SolitaireTerminalOverlay } from './ui/SolitaireTerminalOverlay'
+import { FinalGiftOverlay } from './ui/FinalGiftOverlay'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Crosshair />
         <StartOverlay />
         <SolitaireTerminalOverlay />
+        <FinalGiftOverlay />
       </main>
     </AccessChallengeProvider>
   )
