@@ -111,6 +111,7 @@ export function Painting({ config }: PaintingProps) {
     descriptionItalic,
     placeholderText,
     labelLines,
+    video,
   } = config
   const hasDetailedLabel = Boolean(year || description || note || labelLines?.length)
   const resolvedLabelPosition: [number, number, number] = labelPosition ?? [
@@ -125,7 +126,7 @@ export function Painting({ config }: PaintingProps) {
         frameImage && <OrnateFrame image={frameImage} size={frameSize} />
       ) : (
         <>
-          <mesh castShadow position={[0, 0, -0.025]}>
+          <mesh castShadow={!video} position={[0, 0, -0.025]}>
             <boxGeometry args={[size[0] + 0.28, size[1] + 0.28, 0.12]} />
             <meshStandardMaterial color="#24150c" roughness={0.42} metalness={0.1} />
           </mesh>
@@ -136,7 +137,7 @@ export function Painting({ config }: PaintingProps) {
         </>
       )}
       {living ? (
-        <LivingPainting size={size} palette={palette} />
+        <LivingPainting size={size} palette={palette} video={video} />
       ) : image ? (
         <ImageArtwork image={image} size={size} />
       ) : placeholderText ? (
@@ -153,6 +154,7 @@ export function Painting({ config }: PaintingProps) {
             note={note}
             descriptionItalic={descriptionItalic}
             labelLines={labelLines}
+            castShadow={!video}
             width={labelSize[0]}
             height={labelSize[1]}
           />

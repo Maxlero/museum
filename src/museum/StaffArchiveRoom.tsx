@@ -79,7 +79,7 @@ export function StaffArchiveRoom() {
         <meshStandardMaterial map={endWallTexture} color="#918c83" roughness={0.97} />
       </mesh>
 
-      {[centerX - width * 0.25, centerX, centerX + width * 0.25].map((x) => (
+      {Array.from({ length: 9 }, (_, index) => centerX - width * 0.42 + index * (width * 0.105)).map((x) => (
         <mesh key={x} position={[x, baseY + height - 0.14, centerZ]}>
           <boxGeometry args={[1.5, 0.07, 0.22]} />
           <meshStandardMaterial color="#f0e3c7" emissive="#ead6aa" emissiveIntensity={1.4} />

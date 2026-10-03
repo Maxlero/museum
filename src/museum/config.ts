@@ -39,11 +39,11 @@ export const DECOMMISSIONED_ROOM = {
 } as const
 
 export const STAFF_ARCHIVE_ROOM = {
-  centerX: 21,
-  centerZ: -10.5,
-  width: 10,
-  depth: 4.5,
-  height: 4,
+  centerX: 37,
+  centerZ: -10.75,
+  width: 42,
+  depth: 7,
+  height: 4.5,
 } as const
 
 export const ACTIVE_COLLECTION_ROOM = {

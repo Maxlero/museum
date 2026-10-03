@@ -9,6 +9,7 @@ type PaintingLabelProps = {
   width?: number
   height?: number
   descriptionItalic?: boolean
+  castShadow?: boolean
   labelLines?: Array<{
     text: string
     italic?: boolean
@@ -164,7 +165,7 @@ function createLabelTexture({
   }
 }
 
-export function PaintingLabel({ width = 2.7, height = 0.8, ...content }: PaintingLabelProps) {
+export function PaintingLabel({ width = 2.7, height = 0.8, castShadow = true, ...content }: PaintingLabelProps) {
   const renderedLabel = useMemo(
     () => createLabelTexture(content, width, height),
     [
@@ -185,7 +186,7 @@ export function PaintingLabel({ width = 2.7, height = 0.8, ...content }: Paintin
 
   return (
     <group position={[0, verticalOffset, 0]}>
-      <mesh castShadow position={[0, 0, -0.012]}>
+      <mesh castShadow={castShadow} position={[0, 0, -0.012]}>
         <boxGeometry args={[width + 0.06, displayHeight + 0.06, 0.055]} />
         <meshStandardMaterial color="#8e826e" roughness={0.5} metalness={0.18} />
       </mesh>

@@ -6,6 +6,7 @@ import { createPaintingTexture } from './paintingTexture'
 type LivingPaintingProps = {
   size: [number, number]
   palette: [string, string, string]
+  video?: string
 }
 
 type GeneratedVideo = {
@@ -14,6 +15,36 @@ type GeneratedVideo = {
   start: () => void
   stop: () => void
   dispose: () => void
+}
+
+function createLocalVideo(source: string): GeneratedVideo {
+  const video = document.createElement('video')
+  video.src = source
+  video.preload = 'metadata'
+  video.muted = false
+  video.volume = 0.85
+  video.loop = true
+  video.playsInline = true
+  const texture = new VideoTexture(video)
+  texture.colorSpace = SRGBColorSpace
+
+  return {
+    video,
+    texture,
+    start: () => {
+      void video.play().catch(() => undefined)
+    },
+    stop: () => {
+      video.pause()
+      if (video.readyState > 0) video.currentTime = 0
+    },
+    dispose: () => {
+      video.pause()
+      video.removeAttribute('src')
+      video.load()
+      texture.dispose()
+    },
+  }
 }
 
 function createGeneratedVideo(palette: [string, string, string]): GeneratedVideo {
@@ -93,28 +124,28 @@ function createGeneratedVideo(palette: [string, string, string]): GeneratedVideo
   }
 }
 
-export function LivingPainting({ size, palette }: LivingPaintingProps) {
+function GeneratedLivingPainting({ size, palette }: Omit<LivingPaintingProps, 'video'>) {
   const group = useRef<Group>(null)
   const { camera } = useThree()
   const [active, setActive] = useState(false)
-  const generated = useMemo(() => createGeneratedVideo(palette), [palette])
+  const media = useMemo(() => createGeneratedVideo(palette), [palette])
   const poster = useMemo(() => createPaintingTexture(palette), [palette])
   const worldPosition = useMemo(() => new Vector3(), [])
   const viewDirection = useMemo(() => new Vector3(), [])
   const toPainting = useMemo(() => new Vector3(), [])
 
   useEffect(() => () => {
-    generated.dispose()
+    media.dispose()
     poster.dispose()
-  }, [generated, poster])
+  }, [media, poster])
 
   useEffect(() => {
     if (active) {
-      generated.start()
+      media.start()
     } else {
-      generated.stop()
+      media.stop()
     }
-  }, [active, generated])
+  }, [active, media])
 
   useFrame(() => {
     if (!group.current) return
@@ -129,16 +160,105 @@ export function LivingPainting({ size, palette }: LivingPaintingProps) {
 
   return (
     <group ref={group}>
-      <mesh position={[0, 0, 0.021]}>
+      <mesh position={[0, 0, 0.055]}>
         <planeGeometry args={size} />
-        <meshBasicMaterial map={active ? generated.texture : poster} toneMapped={false} />
+        <meshBasicMaterial map={active ? media.texture : poster} toneMapped={false} />
       </mesh>
-      <pointLight
-        position={[0, 0, 0.55]}
-        color="#f7b771"
-        intensity={active ? 1.25 : 0}
-        distance={3.5}
-      />
     </group>
+  )
+}
+
+function LocalVideoPainting({ size, videoSource }: { size: [number, number]; videoSource: string }) {
+  const group = useRef<Group>(null)
+  const { camera } = useThree()
+  const [active, setActive] = useState(false)
+  const [shouldLoad, setShouldLoad] = useState(false)
+  const activeRef = useRef(false)
+  const shouldLoadRef = useRef(false)
+  const [media, setMedia] = useState<GeneratedVideo | null>(null)
+  const [videoAspect, setVideoAspect] = useState<number | null>(null)
+  const worldPosition = useMemo(() => new Vector3(), [])
+  const viewDirection = useMemo(() => new Vector3(), [])
+  const toPainting = useMemo(() => new Vector3(), [])
+
+  useEffect(() => {
+    if (!shouldLoad) return
+    const resource = createLocalVideo(videoSource)
+    const updateAspect = () => {
+      if (!resource.video.videoWidth || !resource.video.videoHeight) return
+      setVideoAspect(resource.video.videoWidth / resource.video.videoHeight)
+      resource.video.currentTime = 0.01
+    }
+    resource.video.addEventListener('loadedmetadata', updateAspect)
+    resource.video.addEventListener('loadeddata', updateAspect)
+    resource.video.load()
+    setMedia(resource)
+
+    return () => {
+      resource.video.removeEventListener('loadedmetadata', updateAspect)
+      resource.video.removeEventListener('loadeddata', updateAspect)
+      resource.dispose()
+      setMedia(null)
+      setVideoAspect(null)
+    }
+  }, [shouldLoad, videoSource])
+
+  useEffect(() => {
+    if (!media) return
+    if (active) media.start()
+    else media.stop()
+  }, [active, media])
+
+  const displaySize = useMemo<[number, number]>(() => {
+    if (!videoAspect) return size
+    const frameAspect = size[0] / size[1]
+    return videoAspect > frameAspect
+      ? [size[0], size[0] / videoAspect]
+      : [size[1] * videoAspect, size[1]]
+  }, [size, videoAspect])
+
+  useFrame(() => {
+    if (!group.current) return
+    group.current.getWorldPosition(worldPosition)
+    camera.getWorldDirection(viewDirection)
+    toPainting.copy(worldPosition).sub(camera.position)
+    const distance = toPainting.length()
+    const viewAlignment = viewDirection.dot(toPainting.normalize())
+    const keepLoaded = media
+      ? distance < 9 && viewAlignment > -0.15
+      : distance < 7 && viewAlignment > 0.35
+    const shouldPlay =
+      distance < 4.5 && viewAlignment > 0.78 && Boolean(document.pointerLockElement)
+    if (shouldLoadRef.current !== keepLoaded) {
+      shouldLoadRef.current = keepLoaded
+      setShouldLoad(keepLoaded)
+    }
+    if (activeRef.current !== shouldPlay) {
+      activeRef.current = shouldPlay
+      setActive(shouldPlay)
+    }
+  })
+
+  return (
+    <group ref={group}>
+      <mesh position={[0, 0, 0.052]}>
+        <planeGeometry args={size} />
+        <meshStandardMaterial color="#161412" roughness={0.86} />
+      </mesh>
+      {media && (
+        <mesh position={[0, 0, 0.055]}>
+          <planeGeometry args={displaySize} />
+          <meshBasicMaterial map={media.texture} toneMapped={false} />
+        </mesh>
+      )}
+    </group>
+  )
+}
+
+export function LivingPainting({ size, palette, video }: LivingPaintingProps) {
+  return video ? (
+    <LocalVideoPainting size={size} videoSource={video} />
+  ) : (
+    <GeneratedLivingPainting size={size} palette={palette} />
   )
 }
