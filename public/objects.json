@@ -809,15 +809,30 @@
   },
   {
     "type": "painting",
-    "id": "room-4-placeholder-01",
+    "id": "room-4-entry-010",
     "position": [12, 2.15, -7.16],
     "rotation": [0, 3.1415926536, 0],
-    "size": [1, 1.35],
-    "placeholderText": "?",
-    "title": "ARCHIVE ENTRY 010",
-    "year": "Record unavailable.",
-    "labelPosition": [0, -1.1, 0.075],
-    "labelSize": [0.78, 0.32]
+    "size": [1.25, 1.22],
+    "image": "/rooms/room-4/10.jpg",
+    "title": "THE THERAPY-GROUP ACQUISITION",
+    "year": "Psychological Period",
+    "labelLines": [
+      {
+        "text": "Originally encountered in a group setting devoted to emotional insight and human connection."
+      },
+      {
+        "text": "The friendship survived beyond the original program, although subsequent appearances have remained relatively infrequent."
+      },
+      {
+        "text": "Curiously, the sitter’s husband has since achieved greater operational integration with the curator through repeated sporting activities."
+      },
+      {
+        "text": "STATUS: LOW-FREQUENCY CONTACT",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.22, 0.075],
+    "labelSize": [1.1, 0.8]
   },
   {
     "type": "painting",
@@ -833,15 +848,29 @@
   },
   {
     "type": "painting",
-    "id": "room-4-placeholder-03",
+    "id": "room-4-entry-012",
     "position": [14.5, 2.15, -7.16],
     "rotation": [0, 3.1415926536, 0],
-    "size": [1, 1.35],
-    "placeholderText": "?",
-    "title": "ARCHIVE ENTRY 012",
-    "year": "Record unavailable.",
-    "labelPosition": [0, -1.1, 0.075],
-    "labelSize": [0.78, 0.32]
+    "size": [1.05, 1.38],
+    "image": "/rooms/room-4/12.jpg",
+    "title": "THE IKEA PATRON",
+    "labelLines": [
+      {
+        "text": "Known for international relocation, two children, and historically valuable contributions to the subject’s furniture budget."
+      },
+      {
+        "text": "Previously regarded as a reliable source of both friendship and Scandinavian retail benefits."
+      },
+      {
+        "text": "Recent birthday correspondence has raised concerns regarding possible unauthorized AI-assisted sentiment generation."
+      },
+      {
+        "text": "STATUS: AUTHENTICITY PENDING REVIEW",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.3, 0.075],
+    "labelSize": [0.92, 0.8]
   },
   {
     "type": "roomSign",
