@@ -70,9 +70,207 @@
     "id": "next-chapter-gift",
     "position": [26, 0, 7.6],
     "rotation": [0, 0, 0],
-    "size": [1.35, 1.18, 1.05],
+    "size": [1.35, 0.92, 1.05],
     "title": "THE ORIGINAL",
     "message": "Some gifts do not belong only to the digital collection. Please ask the curator for the original."
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-001",
+    "position": [7.14, 2.35, -4.7],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "image": "/rooms/room-2/001.jpg",
+    "title": "THE YELLOW PERIOD",
+    "year": "Coastal Collection",
+    "labelLines": [
+      {
+        "text": "A study in confidence, sunlight and coordinated seasonal decisions."
+      }
+    ],
+    "labelPosition": [0, -1.18, 0.075],
+    "labelSize": [0.98, 0.48]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-002",
+    "position": [7.14, 2.35, -1.7],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "image": "/rooms/room-2/002.jpg",
+    "title": "OFF DUTY",
+    "year": "Home, undated",
+    "labelLines": [
+      {
+        "text": "The subject temporarily withdraws from travel, social obligations and public presentation."
+      },
+      {
+        "text": "Standards of manicure remain unaffected."
+      }
+    ],
+    "labelPosition": [0, -1.25, 0.075],
+    "labelSize": [0.98, 0.62]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-003",
+    "position": [7.14, 2.35, 1.3],
+    "rotation": [0, 1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "video": "/rooms/room-2/003.mp4",
+    "living": true,
+    "title": "THE THEATRICAL BLESSING",
+    "year": "Special Appearance",
+    "labelLines": [
+      {
+        "text": "The subject receives an enthusiastic birthday address from an unidentified but highly committed woman of the theatre."
+      },
+      {
+        "text": "The performance was brief, intense, and impossible to forget."
+      }
+    ],
+    "labelPosition": [0, -1.3, 0.075],
+    "labelSize": [0.98, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-004",
+    "position": [12.25, 2.35, 6.84],
+    "rotation": [0, 3.1415926536, 0],
+    "size": [1.05, 1.55],
+    "image": "/rooms/room-2/004.jpg",
+    "title": "THE FIRST CAT",
+    "year": "Home Collection",
+    "labelLines": [
+      {
+        "text": "Masha with Kitush, the original feline member of the household."
+      },
+      {
+        "text": "Later additions would expand the collection, but the first acquisition retains special historical significance."
+      }
+    ],
+    "labelPosition": [0, -1.34, 0.075],
+    "labelSize": [0.92, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-005",
+    "position": [15.25, 2.35, 6.84],
+    "rotation": [0, 3.1415926536, 0],
+    "size": [1.15, 1.5],
+    "video": "/rooms/room-2/005.mp4",
+    "living": true,
+    "title": "THE ORIGINAL LOVE AFFAIR",
+    "year": "Home Collection",
+    "labelLines": [
+      {
+        "text": "The subject is shown engaged in a prolonged exchange of affection with Kitush, the first cat of the household."
+      },
+      {
+        "text": "Neither party appears interested in maintaining professional distance."
+      }
+    ],
+    "labelPosition": [0, -1.3, 0.075],
+    "labelSize": [0.98, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-006",
+    "position": [12.65, 2.25, -6.84],
+    "rotation": [0, 0, 0],
+    "size": [1.5, 1.12],
+    "image": "/rooms/room-2/006.jpg",
+    "title": "READING ABOVE SEA LEVEL",
+    "year": "Ukraine, Mountain Period",
+    "labelLines": [
+      {
+        "text": "The subject is shown reading in the mountains, dressed with considerably more intention than the activity strictly required."
+      },
+      {
+        "text": "Puma appears to have sponsored the intellectual retreat unofficially."
+      }
+    ],
+    "labelPosition": [0, -1.12, 0.075],
+    "labelSize": [1.24, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-007",
+    "position": [15.25, 2.25, -6.84],
+    "rotation": [0, 0, 0],
+    "size": [1.5, 1],
+    "image": "/rooms/room-2/007.jpg",
+    "title": "THE DAY EVERYONE CAME",
+    "year": "Wedding Collection",
+    "labelLines": [
+      {
+        "text": "A rare assembly of relatives, friends and future historical figures."
+      },
+      {
+        "text": "At the center: Masha and the curator, temporarily unaware of how many separate exhibits this photograph would eventually contain."
+      }
+    ],
+    "labelPosition": [0, -1.06, 0.075],
+    "labelSize": [1.24, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-008",
+    "position": [16.86, 2.35, -4.85],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "image": "/rooms/room-2/008.jpg",
+    "title": "OFF-DUTY EDITORIAL",
+    "year": "Home Collection",
+    "labelLines": [
+      {
+        "text": "The subject appears in an informal domestic look consisting of lounge trousers, lingerie and complete confidence."
+      },
+      {
+        "text": "Evidence suggests the mirror was not prepared for the level of styling involved."
+      }
+    ],
+    "labelPosition": [0, -1.3, 0.075],
+    "labelSize": [0.98, 0.72]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-009",
+    "position": [16.86, 2.35, 2.25],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "image": "/rooms/room-2/009.jpg",
+    "title": "POOR RISK ASSESSMENT",
+    "year": "Dubai Period",
+    "labelLines": [
+      {
+        "text": "The subject is shown voluntarily placing her head inside the mouth of a dinosaur."
+      },
+      {
+        "text": "Contemporary evidence suggests the animal was decorative."
+      },
+      {
+        "text": "This did little to improve the quality of the decision."
+      }
+    ],
+    "labelPosition": [0, -1.35, 0.075],
+    "labelSize": [0.98, 0.82]
+  },
+  {
+    "type": "painting",
+    "id": "room-2-entry-010",
+    "position": [16.86, 2.35, 5.15],
+    "rotation": [0, -1.5707963268, 0],
+    "size": [1.15, 1.5],
+    "image": "/rooms/room-2/010.jpg",
+    "title": "HAPPINESS, ENTHRONED",
+    "labelLines": [
+      {
+        "text": "A study in joy, power and highly successful visual messaging."
+      }
+    ],
+    "labelPosition": [0, -1.16, 0.075],
+    "labelSize": [0.98, 0.44]
   },
   {
     "type": "painting",
@@ -369,10 +567,18 @@
     "rotation": [0, 0, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-1/1111.jpg",
-    "title": "COLLECTION ENTRY 001",
-    "year": "Details pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "title": "THE EQUESTRIAN PORTRAIT",
+    "year": "Belarus Period.",
+    "labelLines": [
+      {
+        "text": "The subject is shown in the traditional position of authority: elevated, composed, and apparently in command."
+      },
+      {
+        "text": "Photographed during one of our earlier adventures in Belarus."
+      }
+    ],
+    "labelPosition": [0, -1.25, 0.075],
+    "labelSize": [0.92, 0.64]
   },
   {
     "type": "painting",
@@ -383,10 +589,14 @@
     "image": "/rooms/room-1/222.jpg",
     "title": "THE GREEN INTERLUDE",
     "year": "2023",
-    "description": "A quiet study of the subject temporarily removed from urban obligations.",
-    "descriptionItalic": true,
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.42]
+    "labelLines": [
+      {
+        "text": "A quiet study of the subject temporarily removed from urban obligations.",
+        "italic": true
+      }
+    ],
+    "labelPosition": [0, -1.17, 0.075],
+    "labelSize": [0.9, 0.5]
   },
   {
     "type": "painting",
@@ -397,10 +607,14 @@
     "image": "/rooms/room-1/333.jpg",
     "title": "THE MADRID PERIOD",
     "year": "Summer 2024",
-    "description": "One of the more polished works from the travel collection.",
-    "descriptionItalic": true,
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.42]
+    "labelLines": [
+      {
+        "text": "One of the more polished works from the travel collection.",
+        "italic": true
+      }
+    ],
+    "labelPosition": [0, -1.17, 0.075],
+    "labelSize": [0.9, 0.5]
   },
   {
     "type": "painting",
@@ -411,9 +625,13 @@
     "image": "/rooms/room-1/444.jpg",
     "title": "THE CURATOR’S VIEW",
     "year": "Greece, est. 2025",
-    "description": "One of many moments in which the subject was simply walking — and still worth photographing.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "labelLines": [
+      {
+        "text": "One of many moments in which the subject was simply walking — and still worth photographing."
+      }
+    ],
+    "labelPosition": [0, -1.195, 0.075],
+    "labelSize": [0.92, 0.55]
   },
   {
     "type": "painting",
@@ -422,10 +640,22 @@
     "rotation": [0, -1.5707963268, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-1/555.jpg",
-    "title": "COLLECTION ENTRY 005",
+    "title": "DENTAL ACQUISITION No. 4",
     "year": "Details pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "labelLines": [
+      {
+        "text": "Removed shortly before this photograph was taken."
+      },
+      {
+        "text": "Part of a broader multi-year restoration project involving orthodontics, restorative dentistry, repeated interventions and substantial capital expenditure."
+      },
+      {
+        "text": "STATUS: NO FURTHER WISDOM REMAINS",
+        "bold": true
+      }
+    ],
+    "labelPosition": [0, -1.295, 0.075],
+    "labelSize": [0.92, 0.75]
   },
   {
     "type": "painting",
@@ -436,9 +666,16 @@
     "image": "/rooms/room-1/666.jpg",
     "title": "THE DINNER WE COULDN’T SEE",
     "year": "est. 2026",
-    "description": "An evening remembered not for how it looked, but for how it felt.  \nThe subject returned to the light visibly satisfied.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "labelLines": [
+      {
+        "text": "An evening remembered not for how it looked, but for how it felt."
+      },
+      {
+        "text": "The subject returned to the light visibly satisfied."
+      }
+    ],
+    "labelPosition": [0, -1.24, 0.075],
+    "labelSize": [0.92, 0.64]
   },
   {
     "type": "painting",
@@ -446,11 +683,22 @@
     "position": [-2.8, 2.75, 7.84],
     "rotation": [0, 3.1415926536, 0],
     "size": [1.6, 1.2],
-    "image": "/rooms/room-1/777.jpg",
-    "title": "COLLECTION ENTRY 007",
-    "year": "Details pending.",
-    "labelPosition": [0, -1.03, 0.075],
-    "labelSize": [1.25, 0.32]
+      "image": "/rooms/room-1/777.jpg",
+      "title": "THE LOCAL CELEBRITY INCIDENT",
+      "year": "Indonesia",
+      "labelLines": [
+        {
+          "text": "During the Indonesian period, the subject was unexpectedly surrounded by a group of girls requesting a photograph."
+        },
+        {
+          "text": "No official explanation was provided."
+        },
+        {
+          "text": "The museum has chosen to interpret the event as an early manifestation of international recognition."
+        }
+      ],
+      "labelPosition": [0, -1.14, 0.075],
+      "labelSize": [1.35, 0.66]
   },
   {
     "type": "painting",
@@ -459,10 +707,18 @@
     "rotation": [0, 3.1415926536, 0],
     "size": [1.05, 1.4],
     "image": "/rooms/room-1/888.jpg",
-    "title": "COLLECTION ENTRY 008",
-    "year": "Details pending.",
-    "labelPosition": [0, -1.13, 0.075],
-    "labelSize": [0.84, 0.32]
+    "title": "TEMPORARY DETENTION",
+    "year": "Germany.",
+    "labelLines": [
+      {
+        "text": "A rare image of the subject behind bars."
+      },
+      {
+        "text": "Contemporary records confirm that the sentence lasted approximately as long as the museum visit."
+      }
+    ],
+    "labelPosition": [0, -1.24, 0.075],
+    "labelSize": [0.92, 0.64]
   },
   {
     "type": "painting",
